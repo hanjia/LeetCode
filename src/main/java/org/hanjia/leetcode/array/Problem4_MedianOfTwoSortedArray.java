@@ -1,5 +1,17 @@
 package org.hanjia.leetcode.array;
 
+/**
+ * 
+Problem 4: 
+There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. 
+The overall run time complexity should be O(log (m+n)).
+ * 
+ * 
+ * Algorithm:
+ * 
+ * @author hanjia
+ *
+ */
 public class Problem4_MedianOfTwoSortedArray {
 
 	public double findMedianSortedArrays(int A[], int B[]) {
