@@ -32,6 +32,11 @@ convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
  */
 public class Problem6_ZigZag {
 
+	public static void main(String[] args){
+		String line = "abcdefghijklmnopqrs";
+		int nRows = 4;
+		System.out.println(convert(line,nRows));
+	}
 	
     public static String convert(String s, int nRows) {
     	
