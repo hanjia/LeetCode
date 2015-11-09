@@ -1,0 +1,43 @@
+package org.hanjia.leetcode.string;
+
+/**
+ * Implement strStr():
+ * Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+ * 
+ * @author hanjia
+ *
+ */
+public class Problem28_ImplementStrStr {
+
+	public static int strStr(String haystack, String needle) {
+        if(haystack==null || needle==null)    
+            return 0;
+ 
+        if(needle.length() == 0){
+            return 0;
+        }
+        
+        for(int i= 0; i < haystack.length(); i++){
+            if(i + needle.length() > haystack.length())
+                return -1;
+            
+            int m = i;
+            for(int j=0; j<needle.length(); j++){
+                if(needle.charAt(j)==haystack.charAt(m)){
+                    if(j==needle.length()-1) //If the last char of needle matches
+                        return i;
+                    m++;
+                }else{
+                    break;
+                }
+            }   
+        }
+        return -1;
+    }
+	
+	public static void main(String[] args){
+		String haystack = "Please say hello java!";
+		String needle = "hello";
+		System.out.println(strStr(haystack,needle));
+	}
+}

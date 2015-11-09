@@ -16,16 +16,16 @@ public class Problem24_SwapNodeInPair {
 	 
 	    ListNode h = new ListNode(0);
 	    h.next = head;
-	    ListNode p = h;
+	    ListNode current = h;
 	 
-	    while(p.next != null && p.next.next != null){
-	        ListNode t1 = p; //use t1 to track 0th node
-	        p = p.next;
-	        t1.next = p.next;
+	    while(current.next != null && current.next.next != null){
+	        ListNode pre = current; //To track previous node
+	        current = current.next;
+	        pre.next = current.next;
 	 
-	        ListNode t2 = p.next.next; 	//use t2 to track 3rd node
-	        p.next.next = p;
-	        p.next = t2;  	
+	        ListNode end = current.next.next; //To track end node
+	        current.next.next = current;
+	        current.next = end;  	
 	    }
 	 
 	    return h.next;
