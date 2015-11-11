@@ -48,6 +48,7 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
                     }else{
                         currentMap.put(subString, 1);
                     }
+            		
             		count++;
             		while(currentMap.get(subString) > map.get(subString)){
                         String temp = s.substring(start, start + wordLength);
@@ -79,7 +80,7 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
     }
 	
 	public static void main(String[] args){
-		String s = "barfoothefoobarman";
+		String s = "barfoobarthefoobarman";
 		String[] words = {"foo","bar"};
 		System.out.println(findSubstring(s, words));
 	}
