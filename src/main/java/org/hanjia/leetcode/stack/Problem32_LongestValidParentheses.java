@@ -11,7 +11,7 @@ import java.util.Stack;
  * @author hanjia
  *
  */
-public class Problem31_LongestValidParentheses {
+public class Problem32_LongestValidParentheses {
 
 	public static int longestValidParenthesesDPSolution(String s) {
 		if (s.length() == 0)
