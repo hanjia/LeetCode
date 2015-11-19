@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.array;
+package org.hanjia.leetcode.string;
 
 public class Problem7_ReverseInteger {
 	

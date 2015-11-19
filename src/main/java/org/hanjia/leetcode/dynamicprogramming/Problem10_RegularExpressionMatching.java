@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.string;
+package org.hanjia.leetcode.dynamicprogramming;
 
 
 /**

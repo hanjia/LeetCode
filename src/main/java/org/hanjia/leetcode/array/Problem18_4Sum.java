@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * 
  * Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? 
  * Find all unique quadruplets in the array which gives the sum of target.
  * 
@@ -19,18 +20,13 @@ import java.util.List;
  *   (-1,  0, 0, 1)
  *   (-2, -1, 1, 2)
  *   (-2,  0, 0, 2)
- * @author hajia
+ *   
+ * @author hanjia
  *
  */
 
 public class Problem18_4Sum {
-	
-	public static void main(String[] args){
-		int[] num = {1,2,3,4,5,6,7};
-		int target = 18;
-		System.out.println(fourSum(num,target));
-	}
-	
+
 	 public static List<List<Integer>> fourSum(int[] nums, int target) {
 	        //Create the dictionary.
 	        HashMap<Integer, List<List<Integer>>> dict = new HashMap<Integer, List<List<Integer>>>();
@@ -50,6 +46,7 @@ public class Problem18_4Sum {
 	                }
 	            }
 	        }
+	        
 	        //Use HashSet to prevent duplicate result.
 	        HashSet<List<Integer>> set = new HashSet<List<Integer>>();
 	        for (Integer sum : dict.keySet()) {
@@ -82,4 +79,13 @@ public class Problem18_4Sum {
 	        ret.addAll(set);
 	        return ret;
 	    }
+	 
+	 
+		
+	public static void main(String[] args){
+		int[] num = {1,2,3,4,5,6,7};
+		int target = 18;
+		System.out.println(fourSum(num,target));
+	}
+		
 }

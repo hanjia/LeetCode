@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.stack;
+package org.hanjia.leetcode.dynamicprogramming;
 
 import java.util.Stack;
 
