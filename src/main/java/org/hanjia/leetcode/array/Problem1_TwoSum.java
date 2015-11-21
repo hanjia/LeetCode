@@ -52,7 +52,7 @@ public class Problem1_TwoSum {
         for(int i = 0; i < numbers.length; i++){
             int residual = target - numbers[i];
         	if(map.containsKey(numbers[i])){
-    			indices[0] = map.get(numbers[i]) + 1; // because the results should be non-zero based as required
+    			indices[0] = map.get(numbers[i]) + 1; // because the results need to be non-zero based as required
     			indices[1] = i + 1;
     			break;
         	}else{

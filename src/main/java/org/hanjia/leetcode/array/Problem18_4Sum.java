@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 
@@ -28,27 +29,28 @@ import java.util.List;
 public class Problem18_4Sum {
 
 	 public static List<List<Integer>> fourSum(int[] nums, int target) {
-	        //Create the dictionary.
-	        HashMap<Integer, List<List<Integer>>> dict = new HashMap<Integer, List<List<Integer>>>();
+	        Map<Integer, List<List<Integer>>> dict = new HashMap<Integer, List<List<Integer>>>(); //Create the dictionary for pairs with the same sum
+	        
 	        for (int i = 0; i < nums.length - 1; i++) {
 	            for (int j = i + 1; j < nums.length; j++) {
 	                int sum = nums[i] + nums[j];
 	                List<Integer> pair = new ArrayList<Integer>(2);
 	                pair.add(i);
 	                pair.add(j);
+	                
 	                if (!dict.containsKey(sum)) {
-	                    List<List<Integer>> value = new ArrayList<List<Integer>>();
-	                    value.add(pair);
-	                    dict.put(sum, value);
+	                    List<List<Integer>> pairs = new ArrayList<List<Integer>>();
+	                    pairs.add(pair);
+	                    dict.put(sum, pairs);
 	                } else {
-	                    List<List<Integer>> value = dict.get(sum);
-	                    value.add(pair);
+	                    List<List<Integer>> pairs = dict.get(sum);
+	                    pairs.add(pair);
 	                }
 	            }
 	        }
 	        
-	        //Use HashSet to prevent duplicate result.
-	        HashSet<List<Integer>> set = new HashSet<List<Integer>>();
+	        Set<List<Integer>> set = new HashSet<List<Integer>>(); //Use HashSet to prevent duplicate result
+
 	        for (Integer sum : dict.keySet()) {
 	            List<List<Integer>> sumPair = dict.get(sum);
 	            if (dict.containsKey(target - sum)) {
@@ -63,21 +65,21 @@ public class Problem18_4Sum {
 	                        //Make sure there is no same element in two pairs.
 	                        if (pair1.contains(pair2.get(0)) || pair1.contains(pair2.get(1)))
 	                            continue;
-	                        ArrayList<Integer> tmpResult = new ArrayList<Integer>(4);
+	                        
+	                        List<Integer> tmpResult = new ArrayList<Integer>(4);
 	                        tmpResult.add(nums[pair1.get(0)]);
 	                        tmpResult.add(nums[pair1.get(1)]);
 	                        tmpResult.add(nums[pair2.get(0)]);
 	                        tmpResult.add(nums[pair2.get(1)]);
-	                        //Sort the list and add it into the set.
-	                        Collections.sort(tmpResult);
+	                        Collections.sort(tmpResult); //Sort the list as required.
 	                        set.add(tmpResult);
 	                    }
 	                }
 	            }
 	        }
-	        List<List<Integer>> ret = new LinkedList<List<Integer>>();
-	        ret.addAll(set);
-	        return ret;
+	        List<List<Integer>> result = new ArrayList<List<Integer>>();
+	        result.addAll(set);
+	        return result;
 	    }
 	 
 	 

@@ -34,12 +34,12 @@ public class Problem15_3Sum {
                         res.add(temp);
                         end--;
                         start++;
-                        while(end > start && nums[end] == nums[end+1]) {
-                        	end--;//avoid duplicate solutions 
+                        while(end > start && nums[end] == nums[end+1]) { // avoid duplicate solutions
+                        	end--; 
                         }
 
-                        while(start < end && nums[start] == nums[start-1]) {
-                        	start++;//avoid duplicate solutions                         
+                        while(start < end && nums[start] == nums[start-1]) { // avoid duplicate solutions 
+                        	start++;                        
                         }
 
                     }else if(nums[start] + nums[end] > -nums[i]){
