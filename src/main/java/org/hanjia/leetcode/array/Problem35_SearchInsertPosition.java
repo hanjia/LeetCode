@@ -34,6 +34,6 @@ public class Problem35_SearchInsertPosition {
                 right = middle - 1;
             }
         }
-        return left;
+        return left; // left pointer will be the closet to the right position
     }
 }

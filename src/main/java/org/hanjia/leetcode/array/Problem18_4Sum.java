@@ -57,6 +57,7 @@ public class Problem18_4Sum {
 	                if (target - sum == sum && sumPair.size() == 1)
 	                    continue;
 	                List<List<Integer>> pairs = dict.get(target - sum);
+	                
 	                for (List<Integer> pair1 : sumPair) {
 	                    for (List<Integer> pair2 : pairs) {
 	                        //Make sure it is not the same pair.
