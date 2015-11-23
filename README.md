@@ -1,2 +1,3 @@
 # LeetCode
-This is Han's repo for LeetCode
+[Wiki for study]
+(https://github.com/hanjia/LeetCode/wiki/LeetCode-Summary-Home)
