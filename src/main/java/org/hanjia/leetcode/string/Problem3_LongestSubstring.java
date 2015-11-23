@@ -1,9 +1,6 @@
 package org.hanjia.leetcode.string;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 
 /**
  * 
@@ -17,34 +14,8 @@ import java.util.List;
  *
  */
 public class Problem3_LongestSubstring {	
-	public int lengthOfLongestSubstring(String s) {
-        char[] charList = s.toCharArray();
-        int largestSize = 0;
-        int current = 0;
-        
-        List<Character> temp = new ArrayList<Character>();
-        while(current < charList.length){
-            if(temp.contains(charList[current])){
-                if(largestSize < temp.size()){
-                    largestSize = temp.size();
-                }
-                temp = new ArrayList<Character>();
-                current = current - temp.size() + temp.indexOf(charList[current]);
-                continue;
-            }else{
-                temp.add(charList[current]);
-                current++;
-            }
-        }
-
-        if(largestSize < temp.size()){
-            largestSize = temp.size();
-        }
-        
-        return largestSize;
-    }
 	
-	public int lengthOfLongestSubstringBetterSolution(String s) {
+	public int lengthOfLongestSubstring(String s) {
         int length = s.length();  
         if (length == 0) {  
             return 0;  
