@@ -32,14 +32,12 @@ public class Problem40_CombinationSum2 {
 	    if(num == null || num.length == 0)
 	        return result;
 	 
-	    Arrays.sort(num);            
-	 
+	    Arrays.sort(num);            	 
 	    List<Integer> current = new ArrayList<Integer>();    
-	    getCombination(num, 0, target, current, result);
-	 
+	    getCombination(num, 0, target, current, result); //Backtracking
+	 	 
+	    //remove duplicate combinations
 	    HashSet<List<Integer>> set = new HashSet<List<Integer>>(result);
-	 
-	    //remove duplicate lists
 	    result.clear();
 	    result.addAll(set);
 	 
@@ -55,8 +53,7 @@ public class Problem40_CombinationSum2 {
 	 
 	    for(int i = start; i < num.length;i++){
 	        if(target < num[i])
-	            continue;
-	 
+	            continue;	 
 	        current.add(num[i]);
 	        getCombination(num, i+1, target-num[i], current, result);
 	        current.remove(current.size()-1);

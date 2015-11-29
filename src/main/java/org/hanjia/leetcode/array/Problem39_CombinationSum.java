@@ -28,12 +28,12 @@ public class Problem39_CombinationSum {
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
 	    List<List<Integer>> result = new ArrayList<List<Integer>>();
 	 
-	    if(candidates == null || candidates.length == 0) return result;
-	 
-	    List<Integer> current = new ArrayList<Integer>();
+	    if(candidates == null || candidates.length == 0) 
+	    	return result;
+
 	    Arrays.sort(candidates);
-	 
-	    combinationSum(candidates, target, 0, current, result);
+	    List<Integer> current = new ArrayList<Integer>();	 
+	    combinationSum(candidates, target, 0, current, result); //Backtracking
 	 
 	    return result;
 	}
@@ -47,8 +47,7 @@ public class Problem39_CombinationSum {
 	 
 	   for(int i = start; i < candidates.length; i++){
 	       if(target < candidates[i]) 
-	            return;
-	 
+	            return; 
 	       current.add(candidates[i]);
 	       combinationSum(candidates, target - candidates[i], i, current, result);
 	       current.remove(current.size()-1); 
