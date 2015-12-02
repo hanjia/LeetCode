@@ -1,5 +1,15 @@
-package org.hanjia.leetcode.string;
+package org.hanjia.leetcode.math;
 
+/**
+ * 
+ * Reverse digits of an integer.
+ * 
+ * Example1: x = 123, return 321
+ * Example2: x = -123, return -321
+ * 
+ * @author hanjia
+ *
+ */
 public class Problem7_ReverseInteger {
 	
 	public static void main(String[] args){

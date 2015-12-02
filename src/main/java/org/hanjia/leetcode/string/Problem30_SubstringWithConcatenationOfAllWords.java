@@ -23,12 +23,12 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
 	
 	public static List<Integer> findSubstring(String s, String[] words) {
 		List<Integer> result = new ArrayList<Integer>();
-		if(s == null || s.length()==0 || words == null || words.length == 0)  
+		if(s == null || s.length() == 0 || words == null || words.length == 0)  
 	        return result;
 		
         int wordLength = words[0].toCharArray().length;
         Map<String, Integer> map = new HashMap<String, Integer>();
-        for(String word: words){
+        for(String word: words){ // To fill up the map
         	if(map.containsKey(word))
         		map.put(word, map.get(word) + 1);
         	else
@@ -36,7 +36,7 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
         }
         
         for(int i = 0; i < wordLength; i++){
-            HashMap<String, Integer> currentMap = new HashMap<String, Integer>();
+            Map<String, Integer> currentMap = new HashMap<String, Integer>();
             int start = i; // starting index
             int count = 0; // number of qualified words
             
@@ -59,9 +59,9 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
                         start += wordLength;
                     }
             		
-            		if(count==words.length){
-                        result.add(start); // add to result    
-                        String temp = s.substring(start, start + wordLength); // shift right and reset currentMap, count & start point         
+            		if(count == words.length){
+                        result.add(start); // find one result    
+                        String temp = s.substring(start, start + wordLength); // shift right and update currentMap, count & starting index         
                         if(currentMap.containsKey(temp)){
                         	currentMap.put(temp, currentMap.get(temp) - 1);
                         }
@@ -80,7 +80,7 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
     }
 	
 	public static void main(String[] args){
-		String s = "barfoobarthefoobarman";
+		String s = "cbarfoobarthefoobarman";
 		String[] words = {"foo","bar"};
 		System.out.println(findSubstring(s, words));
 	}

@@ -39,7 +39,7 @@ public class Problem8_StringToInteger {
 	        i++;
 	    }
 	    
-	    // use double to store result
+	    // use double to store result to avoid overflow
 	    double result = 0;
 	 
 	    // calculate value

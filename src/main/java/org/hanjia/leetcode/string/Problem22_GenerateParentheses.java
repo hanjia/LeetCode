@@ -15,11 +15,11 @@ public class Problem22_GenerateParentheses {
 	
 	public static List<String> generateParenthesis(int n) {
         ArrayList<String> result = new ArrayList<String>();
-        dfs(result, "", n, n); //Using Depth-first Search
+        backtrack(result, "", n, n); //Using Depth-first Search
         return result;
     }
     
-    public static void dfs(ArrayList<String> result, String s, int left, int right){
+    public static void backtrack(ArrayList<String> result, String s, int left, int right){
         if(left > right) return; //if there are more "(" than ")" remaining, we will not be able to build a valid one so stop
      
         if(left == 0 && right == 0){
@@ -28,11 +28,11 @@ public class Problem22_GenerateParentheses {
         }
      
         if(left>0){
-            dfs(result, s + "(", left-1, right);
+        	backtrack(result, s + "(", left-1, right);
         }
      
         if(right>0){
-            dfs(result, s + ")", left, right-1);
+        	backtrack(result, s + ")", left, right-1);
         }
     }
     
