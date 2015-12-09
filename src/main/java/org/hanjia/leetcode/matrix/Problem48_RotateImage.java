@@ -14,6 +14,8 @@ package org.hanjia.leetcode.matrix;
 public class Problem48_RotateImage {
     public static void rotate(int[][] matrix) {
         int length = matrix[0].length;
+        
+        //diagonal swap
         for(int i = 0; i < length; i++){
             for(int j = i + 1; j < length; j++){
                 int temp = matrix[i][j];
@@ -21,7 +23,7 @@ public class Problem48_RotateImage {
                 matrix[j][i] = temp;
             }
         }
-        
+        //upside down swap
         for(int i = 0; i < length; i++){
             for(int j = 0; j < length/2; j++){
                 int temp = matrix[i][j];

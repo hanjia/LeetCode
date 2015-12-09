@@ -24,7 +24,9 @@ public class Problem50_Power {
 	    if (n == 1) {
 	        return x;
 	    }
+	    
 	    double v = pow(x, n/2);
+	    
 	    if (n % 2 == 0) {
 	        return v*v;
 	    } else {
