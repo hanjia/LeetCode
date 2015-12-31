@@ -19,20 +19,19 @@ public class Problem26_RemoveDuplicatesFromSortedArray {
     	if(nums.length < 2) 
     		return nums.length;
     	
-        int p1 = 0;
-        int p2 = 1;
+        int p1 = 0; // to store the end of the result array
+        int p2 = 1; // to traverse the array
         while (p1 < nums.length && p2 < nums.length){
-	        if(nums[p1] == nums[p2]){
-		        p2++;
-	        } else {
+	        if(nums[p1] != nums[p2]){
 		        p1++;
 		        nums[p1] = nums[p2];
-		        p2++;
 	        }
+	        p2++;
         }
         
     	return p1 + 1;
     }
+
     
     public static void main(String[] args){
     	int[] a = {1,1,2,2,2,3};
