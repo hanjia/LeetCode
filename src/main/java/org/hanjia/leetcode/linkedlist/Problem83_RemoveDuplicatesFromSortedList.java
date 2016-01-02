@@ -11,15 +11,15 @@ package org.hanjia.leetcode.linkedlist;
  * @author hanjia
  *
  */
-public class Problem83_RemoveDuplicatesFromLinkedList {
+public class Problem83_RemoveDuplicatesFromSortedList {
     public static ListNode deleteDuplicates(ListNode head) {
-        ListNode cur = head;
+        ListNode current = head;
         while (head != null) {
             while (head.next != null && head.next.val == head.val) {
                 head.next = head.next.next;
             }
             head = head.next;
         }
-        return cur;
+        return current;
     }
 }
