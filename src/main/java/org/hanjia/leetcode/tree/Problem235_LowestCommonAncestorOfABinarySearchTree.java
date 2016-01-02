@@ -20,5 +20,15 @@ package org.hanjia.leetcode.tree;
  *
  */
 public class Problem235_LowestCommonAncestorOfABinarySearchTree {
-
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+	    TreeNode current = root;
+	    if (current.val > p.val && current.val < q.val){
+	        return current;
+	    } else if(current.val > p.val && current.val > q.val){
+	        return lowestCommonAncestor(root.left, p, q);
+	    } else if(current.val < p.val && current.val < q.val){
+	        return lowestCommonAncestor(root.right, p, q);
+	    }
+	    return root;
+	}
 }
