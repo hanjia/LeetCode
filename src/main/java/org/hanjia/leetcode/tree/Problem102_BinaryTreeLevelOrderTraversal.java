@@ -3,6 +3,7 @@ package org.hanjia.leetcode.tree;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 
@@ -36,7 +37,7 @@ public class Problem102_BinaryTreeLevelOrderTraversal {
             return result;
         }
 
-        PriorityQueue<TreeNode> queue = new PriorityQueue<TreeNode>();
+        Queue<TreeNode> queue = new PriorityQueue<TreeNode>();
         queue.offer(root);
 
         while (!queue.isEmpty()) {
