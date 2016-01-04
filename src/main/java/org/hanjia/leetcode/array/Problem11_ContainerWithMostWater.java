@@ -8,15 +8,10 @@ package org.hanjia.leetcode.array;
  * Find two lines, which together with x-axis forms a container, such that the container contains the most water.
  * Note: You may not slant the container.
  * 
- * @author hajia
+ * @author hanjia
  *
  */
 public class Problem11_ContainerWithMostWater {
-	
-	public static void main(String[] args){
-		
-	}
-	
 	public int maxArea(int[] height) {
         int maxVolume = 0;
         int i = 0;
