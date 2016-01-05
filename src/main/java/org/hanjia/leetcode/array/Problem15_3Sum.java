@@ -13,6 +13,12 @@ import java.util.List;
  *
  */
 public class Problem15_3Sum {
+	/**
+	 * Algorithm: Sort the array first; Use two pointers: one at the beginning and the other at the end; Move two pointers towards the middle.
+	 * 
+	 * @param nums
+	 * @return
+	 */
     public static List<List<Integer>> threeSum(int[] nums) {
     	List<List<Integer>> res = new ArrayList<List<Integer>>(); 
         if(nums==null || nums.length<=2)  

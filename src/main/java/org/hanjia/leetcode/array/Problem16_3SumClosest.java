@@ -15,7 +15,13 @@ import java.util.Arrays;
  *
  */
 public class Problem16_3SumClosest {
-
+	/**
+	 * Algorithm: Sort the array first; Use two pointers: one at the beginning and the other at the end; Move two pointers towards the middle.
+	 * 
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
 	public int threeSumClosest(int[] nums, int target) {
         int closest = nums[0] + nums[1] + nums[2];
         int diff = Math.abs(closest - target);

@@ -41,6 +41,7 @@ public class Problem1_TwoSum {
 	
 	/**
 	 * Time Complexity: O(n), Space Complexity: O(n)
+	 * Algorithm: Use a hash map to store the residual value (sum - current).
 	 * @param numbers
 	 * @param target
 	 * @return

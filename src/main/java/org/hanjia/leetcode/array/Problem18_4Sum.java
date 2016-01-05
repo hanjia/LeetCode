@@ -21,13 +21,20 @@ import java.util.Set;
  *   (-1,  0, 0, 1)
  *   (-2, -1, 1, 2)
  *   (-2,  0, 0, 2)
+ * 
  *   
  * @author hanjia
  *
  */
 
 public class Problem18_4Sum {
-
+	/**
+	 * Algorithm:Use a dictionary to store pairs with the same sum; Traverse the array to fill up the dictionary; Traverse the dictionary values and put matching pairs into a set.
+	 * 
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
 	 public static List<List<Integer>> fourSum(int[] nums, int target) {
 	        Map<Integer, List<List<Integer>>> dict = new HashMap<Integer, List<List<Integer>>>(); //Create the dictionary for pairs with the same sum
 	        
