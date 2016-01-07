@@ -12,31 +12,38 @@ package org.hanjia.leetcode.array;
  *
  */
 public class Problem33_SearchInRotatedSortedArray {
-    
+    /**
+     * 
+     * Algorithm: binary search but need to check which half has the rotated part before moving left or right pointer
+     * 
+     * @param nums
+     * @param target
+     * @return
+     */
 	public static int searchIterative(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length - 1;
-        while(left <= right){
-            int middle = left + (right - left)/2;
-            if(nums[middle] == target){
-                return middle;
-            }
-            
-            if(nums[middle] >= nums[left]){
-                if(target > nums[middle] || target < nums[left]){
-                    left = middle + 1;
-                }else{
-                    right = middle - 1;
-                }
-            } else{
-                if(target < nums[middle] || target > nums[right]){
-                    right = middle - 1;
-                }else{
-                    left = middle + 1;
-                }
-            }
-        }
-        return -1;
+		int left = 0;
+		int right = nums.length - 1;
+		while (left <= right) {
+			int middle = left + (right - left) / 2;
+			if (nums[middle] == target) {
+				return middle;
+			}
+
+			if (nums[middle] >= nums[left]) {
+				if (target > nums[middle] || target < nums[left]) {
+					left = middle + 1;
+				} else {
+					right = middle - 1;
+				}
+			} else {
+				if (target < nums[middle] || target > nums[right]) {
+					right = middle - 1;
+				} else {
+					left = middle + 1;
+				}
+			}
+		}
+		return -1;
     }
 	
 	public static int searchRecursive(int[] nums, int target) {

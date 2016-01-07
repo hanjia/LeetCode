@@ -14,58 +14,66 @@ import java.util.Arrays;
  *
  */
 public class Problem34_SearchForARange {
-    public static int[] searchRange(int[] nums, int target) {
-        if(nums.length == 0)
-            return null;
-        
-        int[] bound = new int[2];
-        int left = 0;
-        int right = nums.length - 1;
-        bound[0] = -1; // In case there is no match
-        bound[1] = -1;
-        
-        if(nums[left] == nums[right] && nums[left] == target){ // Special case!!
-            bound[0] = left;
-            bound[1] = right;
-            return bound;
-        }
-        
-        while(left <= right){
-            int middle = left + (right - left) / 2;
-            if(nums[middle] == target){
-                bound[0] = middle;
-                bound[1] = middle;
-                
-                while(middle > 0){
-                	if(nums[middle - 1] != target){
-                		bound[0] = middle;
-                		break;
-                	}else{
-                		bound[0] = middle - 1;
-                	}
-                	middle--;
-                }
-                
-                while(middle < nums.length - 1){
-                	if(nums[middle + 1] != target){
-                		bound[1] = middle;
-                		break;
-                	}else{
-                		bound[1] = middle + 1;
-                	}
-                	middle++;
-                }
-                break;
-            }
-            
-            if(nums[middle] < target){
-                left = middle + 1;
-            }else{
-                right = middle - 1;
-            }
-        }
-        
-        return bound;
+	/**
+	 * 
+	 * Algorithm: binary search until we found a matching value at which middle pointer is. Then go to both left side and right side to find out the two bounds.
+	 * 
+	 * 
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
+	public static int[] searchRange(int[] nums, int target) {
+		if (nums.length == 0)
+			return null;
+
+		int[] bound = new int[2];
+		int left = 0;
+		int right = nums.length - 1;
+		bound[0] = -1; // In case there is no match
+		bound[1] = -1;
+
+		if (nums[left] == nums[right] && nums[left] == target) { // Special case: when all the elements	are equal to the target
+			bound[0] = left;
+			bound[1] = right;
+			return bound;
+		}
+
+		while (left <= right) {
+			int middle = left + (right - left) / 2;
+			if (nums[middle] == target) {
+				bound[0] = middle;
+				bound[1] = middle;
+
+				while (middle > 0) { // To determine the lower bound
+					if (nums[middle - 1] != target) {
+						bound[0] = middle;
+						break;
+					} else {
+						bound[0] = middle - 1;
+					}
+					middle--;
+				}
+
+				while (middle < nums.length - 1) { // To determine the upper bound
+					if (nums[middle + 1] != target) {
+						bound[1] = middle;
+						break;
+					} else {
+						bound[1] = middle + 1;
+					}
+					middle++;
+				}
+				break;
+			}
+
+			if (nums[middle] < target) {
+				left = middle + 1;
+			} else {
+				right = middle - 1;
+			}
+		}
+		return bound;
     }
     
     public static void main(String[] args){

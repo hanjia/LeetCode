@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -27,36 +28,44 @@ import java.util.List;
  *
  */
 public class Problem40_CombinationSum2 {
+	/**
+	 * 
+	 * Backtracking
+	 * 
+	 * 
+	 * @param num
+	 * @param target
+	 * @return
+	 */
 	public static List<List<Integer>> combinationSum2(int[] num, int target) {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
-	    if(num == null || num.length == 0)
-	        return result;
-	 
-	    Arrays.sort(num);            	 
-	    List<Integer> current = new ArrayList<Integer>();    
-	    getCombination(num, 0, target, current, result); //Backtracking
-	 	 
-	    //remove duplicate combinations
-	    HashSet<List<Integer>> set = new HashSet<List<Integer>>(result);
-	    result.clear();
-	    result.addAll(set);
-	 
-	    return result;
+		if (num == null || num.length == 0)
+			return result;
+
+		Arrays.sort(num);
+		List<Integer> current = new ArrayList<Integer>();
+		getCombination(num, target, 0, current, result);
+
+		// remove duplicate combinations
+		Set<List<Integer>> set = new HashSet<List<Integer>>(result);
+		result.clear();
+		result.addAll(set);
+		return result;
 	}
 	 
-	public static void getCombination(int[] num, int start, int target, List<Integer> current, List<List<Integer>> result){
-	    if(target == 0){
-	        List<Integer> temp = new ArrayList<Integer>(current);
-	        result.add(temp);
-	        return;
-	    }
+	public static void getCombination(int[] num, int target, int start, List<Integer> current, List<List<Integer>> result){
+		if (target == 0) {
+			List<Integer> temp = new ArrayList<Integer>(current);
+			result.add(temp);
+			return;
+		}
 	 
-	    for(int i = start; i < num.length;i++){
-	        if(target < num[i])
-	            continue;	 
-	        current.add(num[i]);
-	        getCombination(num, i+1, target-num[i], current, result);
-	        current.remove(current.size()-1);
-	    }
+		for (int i = start; i < num.length; i++) {
+			if (target < num[i])
+				continue;
+			current.add(num[i]);
+			getCombination(num, target - num[i], i + 1, current, result); // Note start is (i+1), because any element can only used for once 
+			current.remove(current.size() - 1);
+		}
 	}
 }

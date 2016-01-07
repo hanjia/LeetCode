@@ -24,7 +24,15 @@ import java.util.List;
  *
  */
 public class Problem39_CombinationSum {
-	
+	/**
+	 * 
+	 * Backtracking
+	 * 
+	 * 
+	 * @param candidates
+	 * @param target
+	 * @return
+	 */
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
 	    List<List<Integer>> result = new ArrayList<List<Integer>>();
 	 
@@ -33,8 +41,7 @@ public class Problem39_CombinationSum {
 
 	    Arrays.sort(candidates);
 	    List<Integer> current = new ArrayList<Integer>();	 
-	    combinationSum(candidates, target, 0, current, result); //Backtracking
-	 
+	    combinationSum(candidates, target, 0, current, result); 	 
 	    return result;
 	}
 	 
