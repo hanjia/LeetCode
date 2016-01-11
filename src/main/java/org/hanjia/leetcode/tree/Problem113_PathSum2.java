@@ -29,22 +29,34 @@ import java.util.List;
 public class Problem113_PathSum2 {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> result = new ArrayList<List<Integer>>(); 
+        if (root == null) {
+        	return result;
+        }
         List<Integer> items = new ArrayList<Integer>();
-        pathSum(root, sum, items, result);
+        items.add(root.val);
+        pathSum(root, sum - root.val, items, result);
         return result;
     }
     
-    private void pathSum(TreeNode root, int target, List<Integer> items, List<List<Integer>> result) {
-//	    if (root == null) {
-//	        return false;
-//	    }
-//	    sum += root.val;
-//	    if (root.left == null && root.right == null) {
-//	        if (sum == target) {
-//	            return true;
-//	        } else {
-//	            return false;
-//	        }
-//	    }
-    }
+	public void pathSum(TreeNode root, int target, List<Integer> items, List<List<Integer>> result) {
+		if (root.left == null && root.right == null && target == 0) {
+			List<Integer> temp = new ArrayList<Integer>();
+			temp.addAll(items);
+			result.add(temp);
+		}
+
+		if (root.left != null) { // search path of left node
+			int leftValue = root.left.val;
+			items.add(leftValue);
+			pathSum(root.left, target - leftValue, items, result);
+			items.remove(items.size() - 1);
+		}
+
+		if (root.right != null) { // search path of right node
+			int rightValue = root.right.val;
+			items.add(rightValue);
+			pathSum(root.right, target - rightValue, items, result);
+			items.remove(items.size() - 1);
+		}
+	}
 }
