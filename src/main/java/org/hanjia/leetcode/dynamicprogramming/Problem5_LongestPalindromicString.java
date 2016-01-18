@@ -7,15 +7,10 @@ package org.hanjia.leetcode.dynamicprogramming;
  * 
  * Algorithm:
  * 
- * @author hajia
+ * @author hanjia
  *
  */
 public class Problem5_LongestPalindromicString {
-	
-	public static void main(String[] args){
-		
-	}
-	
 	
 	public String longestPalindromeThroughDP (String str) {
 	    boolean[][] table = new boolean[str.length()][str.length()];
@@ -59,5 +54,11 @@ public class Problem5_LongestPalindromicString {
 	        }
 	    }
 	    return true;
+	}
+	
+	public static void main(String[] args){
+		String str = "dawabcbawefrwp";
+		Problem5_LongestPalindromicString longestPalindromicString = new Problem5_LongestPalindromicString();
+		System.out.println(longestPalindromicString.longestPalindromeThroughDP(str));		
 	}
 }
