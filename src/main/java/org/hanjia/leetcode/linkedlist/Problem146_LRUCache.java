@@ -3,6 +3,17 @@ package org.hanjia.leetcode.linkedlist;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
+ * 
+ * get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+ * set(key, value) - Set or insert the value if the key is not already present. 
+ * 	When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
+ * 
+ * @author hanjia
+ *
+ */
 public class Problem146_LRUCache {
     private int capacity;
 	private Map<Integer, Node> map = new HashMap<Integer, Node>(); // To store the mapping between key and the node
@@ -25,7 +36,7 @@ public class Problem146_LRUCache {
 		current.prev.next = current.next;
 		current.next.prev = current.prev;
 
-		// move current to tails - - update its frequecy 
+		// move current to tails
 		addToTail(current);
 		return current.value;        
     }
@@ -43,9 +54,9 @@ public class Problem146_LRUCache {
 			head.next.prev = head;
 		}
 
-		Node insert = new Node(key, value);
-		map.put(key, insert);
-		addToTail(insert);        
+		Node newNode = new Node(key, value);
+		map.put(key, newNode);
+		addToTail(newNode);        
     }
     
     private void addToTail(Node current) {
@@ -56,6 +67,7 @@ public class Problem146_LRUCache {
 	}
     
     private class Node {
+		//Doubly Linked List
 		Node prev;
 		Node next;
 		int key;
