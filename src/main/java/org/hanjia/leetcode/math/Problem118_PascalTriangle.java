@@ -15,7 +15,8 @@ import java.util.List;
 	    [1,1],
 	   [1,2,1],
 	  [1,3,3,1],
-	 [1,4,6,4,1]
+	 [1,4,6,4,1],
+   [1,5,10,10,5,1], 
  * ]
  * @author hanjia
  *
@@ -26,6 +27,7 @@ public class Problem118_PascalTriangle {
         if (numRows == 0) {
             return result;
         }
+        
         for (int i = 0; i < numRows; i++) {
             List<Integer> row = new ArrayList<Integer>();
             row.add(1);
