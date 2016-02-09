@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.misc;
+package org.hanjia.leetcode.math;
 
 
 /**
