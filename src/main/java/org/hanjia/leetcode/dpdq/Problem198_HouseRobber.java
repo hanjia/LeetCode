@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.dynamicprogramming;
+package org.hanjia.leetcode.dpdq;
 
 /**
  * You are a professional robber planning to rob houses along a street. 

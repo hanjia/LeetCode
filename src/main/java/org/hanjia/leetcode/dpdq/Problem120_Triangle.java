@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.dynamicprogramming;
+package org.hanjia.leetcode.dpdq;
 
 import java.util.ArrayList;
 import java.util.Arrays;
