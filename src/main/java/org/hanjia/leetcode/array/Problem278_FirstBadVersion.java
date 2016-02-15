@@ -14,7 +14,7 @@ package org.hanjia.leetcode.array;
  * @author hanjia
  *
  */
-public class Problem278_FisrtBadVersion extends VersionControl {
+public class Problem278_FirstBadVersion extends VersionControl {
 	public int firstBadVersion(int n) {
 	    int left = 1;
 	    int right = n;
