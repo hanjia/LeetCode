@@ -24,15 +24,16 @@ public class Problem61_RotateList {
         }
         
         k = k % length;
-        current.next = head; //Connect head and rear
+        current.next = head; // Connect head and rear
         
-        int steps = length - k - 1; //Need to move (length - k - 1) steps
+        int steps = length - k - 1; // Need to move (length - k - 1) steps
         while(steps > 0){
             head = head.next;
             steps--;
         }
         ListNode result = head.next;
-        head.next = null;
+        head.next = null; // Disconnect head and rear
+        
         return result;
     }
 }

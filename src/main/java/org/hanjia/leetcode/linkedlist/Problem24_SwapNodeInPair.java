@@ -8,29 +8,27 @@ package org.hanjia.leetcode.linkedlist;
  * @author hanjia
  *
  */
-public class Problem24_SwapNodeInPair {
-	
+public class Problem24_SwapNodeInPair {	
 	public static ListNode swapPairs(ListNode head) {
-	    if(head == null || head.next == null)   
-	        return head;
-	 
-	    ListNode h = new ListNode(0);
-	    h.next = head;
-	    ListNode current = h;
-	 
-	    while(current.next != null && current.next.next != null){
-	        ListNode pre = current; //To track previous node
-	        current = current.next;
-	        pre.next = current.next;
-	 
-	        ListNode end = current.next.next; //To track end node
-	        current.next.next = current;
-	        current.next = end;  	
-	    }
-	 
-	    return h.next;
+		if (head == null || head.next == null)
+			return head;
+
+		ListNode dummy = new ListNode(0);
+		dummy.next = head;
+		ListNode current = dummy;
+
+		while (current.next != null && current.next.next != null) {
+			ListNode pre = current; // To track previous node
+			current = current.next;
+			pre.next = current.next;
+
+			ListNode next = current.next.next; // To track next node
+			current.next.next = current;
+			current.next = next;
+		}
+
+		return dummy.next;
 	}
-	
 	
 	public static void main(String[] args){
 

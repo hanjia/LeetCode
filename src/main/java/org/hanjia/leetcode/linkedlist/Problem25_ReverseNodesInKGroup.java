@@ -22,38 +22,39 @@ public class Problem25_ReverseNodesInKGroup {
 	    if(head == null){  
 	        return null;  
 	    } 
-	    int count = 0;  
 	    
-	    ListNode h = new ListNode(0);  
-	    h.next = head;  
-	    ListNode pre = h;  
+	    ListNode dummy = new ListNode(0);  
+	    dummy.next = head;  
+	    ListNode pre = dummy;  
 	    ListNode current = head;  
 	    
+	    int count = 0;  
 	    while(current != null){  
-	        count ++;  
+	        count++;  
 	        ListNode next = current.next; 	        
 	        if(count == k){  
 	            pre = reverse(pre, next);  
 	            count = 0;     
 	        }  
 	        current = next;  
-	    }  
-	    return h.next;  
+	    } 
+	    
+	    return dummy.next;  
 	}
 	
-	private static ListNode reverse(ListNode pre, ListNode end) {  
-	    if(pre==null || pre.next==null)  
-	        return pre;  
+	private static ListNode reverse(ListNode start, ListNode end) {  
+		if (start == null || start.next == null)
+			return start;
 	    
-	    ListNode head = pre.next;  
-	    ListNode current = pre.next.next; 
+	    ListNode head = start.next;  
+	    ListNode current = start.next.next; 
 	    
-	    while(current!= end){  
-	        ListNode next = current.next;  
-	        current.next = pre.next;  
-	        pre.next = current;  
-	        current = next;  
-	    }  
+		while (current != end) {
+			ListNode next = current.next;
+			current.next = start.next;
+			start.next = current;
+			current = next;
+		}
 	    
 	    head.next = end;  
 	    return head;  

@@ -15,9 +15,10 @@ import java.util.PriorityQueue;
 public class Problem23_MergeNSortedLists {
 	
 	public ListNode mergeNLists(ArrayList<ListNode> lists) {
-		if (lists.size() == 0) return null;
+		if (lists.size() == 0) 
+			return null;
  
-		PriorityQueue<ListNode> q = new PriorityQueue<ListNode>(lists.size(),
+		PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(lists.size(),
 				new Comparator<ListNode>() {
 					public int compare(ListNode a, ListNode b) {
 						if (a.val > b.val)
@@ -30,25 +31,25 @@ public class Problem23_MergeNSortedLists {
 				});
  
 		//add first node of each list to the queue
-		for (ListNode list : lists) {
+		for (ListNode list: lists) {
 			if (list != null)
-				q.add(list);
+				queue.add(list);
 		}
  
-		ListNode head = new ListNode(-1);
-		ListNode p = head;
+		ListNode dummy = new ListNode(-1);
+		ListNode current = dummy;
  
-		while (q.size() > 0) {
-			ListNode temp = q.poll(); //get the top node from the queue
-			p.next = temp;
+		while (queue.size() > 0) {
+			ListNode temp = queue.poll(); //get the top node from the queue
+			current.next = temp;
  
 			//keep adding next element of the node we just fetched from the queue
-			if (temp.next != null)
-				q.add(temp.next);
- 
-			p = p.next;
+			if (temp.next != null) {
+				queue.add(temp.next);
+			}
+			current = current.next;
 		}
  
-		return head.next;
+		return dummy.next;
 	}
 }

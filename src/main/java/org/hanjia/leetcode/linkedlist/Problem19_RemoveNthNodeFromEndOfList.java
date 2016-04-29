@@ -34,6 +34,7 @@ public class Problem19_RemoveNthNodeFromEndOfList {
 			p2 = p2.next;
 			p1 = p1.next;
 		}
+		
 		p1.next = p1.next.next;
 		return head;
     }
