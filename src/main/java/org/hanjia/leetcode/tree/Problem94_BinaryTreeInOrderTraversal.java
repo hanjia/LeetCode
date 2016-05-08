@@ -29,17 +29,13 @@ public class Problem94_BinaryTreeInOrderTraversal {
         Stack<TreeNode> stack = new Stack<TreeNode>();
         TreeNode current = root;        
         
-        while(true){
+        while(current != null || !stack.isEmpty()){
         	while(current != null){
         		stack.push(current);
         		current = current.left;
-        	}
-        	
-        	if(stack.isEmpty()){
-        		break;
-        	}
-        	
+        	}        	
         	current = stack.pop();
+        	System.out.println(current.val);
         	result.add(current.val);
         	current = current.right;
         }
@@ -48,6 +44,14 @@ public class Problem94_BinaryTreeInOrderTraversal {
     }
     
     public static void main(String[] args){
-    	
+    	TreeNode root = new TreeNode(1);
+    	root.left = new TreeNode(2);
+    	root.right = new TreeNode(3);
+    	root.left.left = new TreeNode(4);
+    	root.left.right = new TreeNode(5);
+    	root.right.left = new TreeNode(6);
+    	root.right.right = new TreeNode(7);  
+    	Problem94_BinaryTreeInOrderTraversal inorder = new Problem94_BinaryTreeInOrderTraversal();
+    	inorder.inorderTraversal(root);
     }
 }
