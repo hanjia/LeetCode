@@ -24,7 +24,7 @@ package org.hanjia.leetcode.tree;
 	 1
  * Longest consecutive sequence path is 2-3, not 3-2-1, so return 2.
  * 
- * @author hajia
+ * @author hanjia
  *
  */
 public class Problem298_BinaryTreeLongestConsecutiveSequence {
@@ -32,12 +32,16 @@ public class Problem298_BinaryTreeLongestConsecutiveSequence {
         return dfs(root, null, 0);
     }
     
-    //In-order DFS
-    private int dfs(TreeNode p, TreeNode parent, int length) {
-        if (p == null) 
-        	return length;
-        length = (parent != null && p.val == parent.val + 1) ? length + 1 : 1;
-        int maxLength = Math.max(dfs(p.left, p, length), dfs(p.right, p, length));
-        return Math.max(length, maxLength);
-    }
+    //Pre-order traversal
+	private int dfs(TreeNode current, TreeNode parent, int length) {
+		if (current == null)
+			return length;
+		
+		length = (parent != null && current.val == parent.val + 1) ? length + 1 : 1;
+		int leftLength = dfs(current.left, current, length);
+		int rightLength = dfs(current.right, current, length);
+		
+		int maxLength = Math.max(leftLength, rightLength);
+		return Math.max(length, maxLength);
+	}
 }
