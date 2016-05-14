@@ -122,40 +122,39 @@ public class Problem2_AddTwoNumber {
     
     
     public static ListNode addTwoNumbersBetterSolution(ListNode l1, ListNode l2, int carry){
+		ListNode result = new ListNode(carry);
 
-	    ListNode result = new ListNode(carry);
-	
-    	if(l1 == null && l2 == null){
-    		return result;
-    	}
+		if (l1 == null && l2 == null) {
+			return result;
+		}
 
-    	int value = carry;
-    	
-    	if(l1 != null){
-    		value += l1.val;
-    	}
-    	if(l2 != null){
-    		value += l2.val;
-    	}
-    	result.val = value % 10;
-    	carry = (value >= 10) ? 1 : 0;
-    	
-    	if(l1 == null){
-    	    if(!(l2.next == null && carry == 0)){
-        	    result.next = addTwoNumbersBetterSolution(null, l2.next, carry);
-    	    }
-    	}else if(l2 == null){
-    	    if(!(l1.next == null && carry == 0)){
-        	    result.next = addTwoNumbersBetterSolution(l1.next, null, carry);
-    	    }
-    	}
-    	else{
-        	if(!(l1.next == null && l2.next == null && carry == 0)){
-        	    result.next = addTwoNumbersBetterSolution(l1.next,l2.next, carry);
-        	}
-    	}
-    	return result;
-	
+		int value = carry;
+
+		if (l1 != null) {
+			value += l1.val;
+		}
+		if (l2 != null) {
+			value += l2.val;
+		}
+		result.val = value % 10;
+		carry = (value >= 10) ? 1 : 0;
+
+		if (l1 == null) {
+			if (!(l2.next == null && carry == 0)) { //check whether a further step is needed
+				result.next = addTwoNumbersBetterSolution(null, l2.next, carry);
+			}
+		} else if (l2 == null) {
+			if (!(l1.next == null && carry == 0)) { //check whether a further step is needed
+				result.next = addTwoNumbersBetterSolution(l1.next, null, carry);
+			}
+		} else {
+			if (!(l1.next == null && l2.next == null && carry == 0)) { //check whether a further step is needed
+				result.next = addTwoNumbersBetterSolution(l1.next, l2.next,
+						carry);
+			}
+		}
+		return result;
+
     }
 }
 

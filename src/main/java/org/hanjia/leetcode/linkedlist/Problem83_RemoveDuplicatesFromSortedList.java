@@ -13,13 +13,14 @@ package org.hanjia.leetcode.linkedlist;
  */
 public class Problem83_RemoveDuplicatesFromSortedList {
     public static ListNode deleteDuplicates(ListNode head) {
-        ListNode current = head;
+        ListNode result = head;
         while (head != null) {
+        	// To exhaust all the duplicates
             while (head.next != null && head.next.val == head.val) {
                 head.next = head.next.next;
             }
             head = head.next;
         }
-        return current;
+        return result;
     }
 }
