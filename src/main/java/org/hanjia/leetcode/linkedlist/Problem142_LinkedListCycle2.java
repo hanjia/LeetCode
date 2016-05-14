@@ -17,8 +17,11 @@ public class Problem142_LinkedListCycle2 {
 	    while (fast != null && fast.next != null) {
 	        fast = fast.next.next;
 	        slow = slow.next;
+	        
 	        if (fast == slow) {
-	            slow = head;
+	            slow = head;  
+	            // At this point, the distance from slow and fast to the entrance of circle will be the same
+	            // A simple math proof: http://fisherlei.blogspot.com/2013/11/leetcode-linked-list-cycle-ii-solution.html
 	            while (slow != fast) {
 	                fast = fast.next;
 	                slow = slow.next;

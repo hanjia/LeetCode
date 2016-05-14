@@ -28,9 +28,15 @@ public class Problem21_MergeTwoSortedLists {
 			current = current.next;
 		}
 
-		if (l1 != null) {
+		if (l1 != null) { // To attach the rest of List 1 directly to the result list
 			current.next = l1;
 		}
+		
+//		while(l1 != null) {
+//			current.next = l1;
+//			l1 = l1.next;
+//			current = current.next;
+//		}
 
 		if (l2 != null) {
 			current.next = l2;
@@ -43,6 +49,7 @@ public class Problem21_MergeTwoSortedLists {
     	ListNode l1 = new ListNode(1);
     	l1.next = new ListNode(3);
     	l1.next.next = new ListNode(4);
+    	l1.next.next.next = new ListNode(5);
     	
     	ListNode l2 = new ListNode(0);
     	l2.next = new ListNode(2);
