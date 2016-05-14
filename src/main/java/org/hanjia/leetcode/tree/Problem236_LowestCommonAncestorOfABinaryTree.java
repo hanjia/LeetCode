@@ -20,19 +20,24 @@ package org.hanjia.leetcode.tree;
  *
  */
 public class Problem236_LowestCommonAncestorOfABinaryTree {
+	//Pre-order traversal	
 	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-	    if (root == null || root == p || root == q) {
+	    if (root == null)
+	    	return null;
+	    
+	    // If any of the given nodes matches with root, then root is LCA (assuming that both keys are present). 
+	    if (root == p || root == q)
 	        return root;
-	    }
-
-	    // Divide
+	    
+		// If root doesn’t match with any of the target nodes, we recur for left and right subtree. 
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
 
-	    // Conquer
+    	// The node is the LCA which has one target present in its left subtree and the other target present in right subtree. 
 	    if (left != null && right != null) {
 	        return root;
 	    }
+		// If both targets lie in left subtree, then left subtree has LCA, otherwise LCA lies in right subtree.
 	    if (left == null) {
 	        return right;
 	    }
