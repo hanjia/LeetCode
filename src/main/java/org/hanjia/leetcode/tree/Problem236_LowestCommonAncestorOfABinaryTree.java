@@ -21,24 +21,25 @@ package org.hanjia.leetcode.tree;
  */
 public class Problem236_LowestCommonAncestorOfABinaryTree {
 	public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-	    if (root == null || root.val == p.val || root.val == q.val) {
+	    if (root == null || root == p || root == q) {
 	        return root;
 	    }
 
 	    // Divide
-	    TreeNode left = lowestCommonAncestor(root.left, p, q);
-	    TreeNode right = lowestCommonAncestor(root.right, p, q);
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
 
 	    // Conquer
-	    if (left == null && right == null) {
+	    if (left != null && right != null) {
 	        return root;
 	    }
-	    if (left != null) {
-	        return left;
-	    }
-	    if (right != null) {
+	    if (left == null) {
 	        return right;
 	    }
+	    if (right == null) {
+	        return left;
+	    }
+	    
 	    return null;
 	}
 }

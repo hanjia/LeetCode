@@ -50,4 +50,10 @@ public class Problem95_UniqueBinarySearchTrees2 {
 	    }	 
 	    return list;
 	}
+	
+	public static void main(String[] args){
+		Problem95_UniqueBinarySearchTrees2 bst = new Problem95_UniqueBinarySearchTrees2();
+		List<TreeNode> results = bst.generateTrees(3);
+		System.out.println(results.size());
+	}
 }
