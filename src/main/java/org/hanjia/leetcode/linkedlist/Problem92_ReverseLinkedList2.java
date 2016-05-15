@@ -22,9 +22,11 @@ public class Problem92_ReverseLinkedList2 {
 			return head;
 		}
 	    
-	    ListNode previousMNode = null; // track (m-1)th node
-	    ListNode start = new ListNode(0); // first's next points to mth
-	    ListNode end = new ListNode(0); // second's next points to (n+1)th
+	    ListNode previousNodeForM = null; // track (m-1)th node	   
+	    
+	    // Two pointers: first's next points to mth; second's next points to (n+1)th
+	    ListNode start = new ListNode(0); 
+	    ListNode end = new ListNode(0); 
 	 
 	    // To determine m and n
 	    int i = 0;
@@ -32,7 +34,7 @@ public class Problem92_ReverseLinkedList2 {
 	    while (p != null) {
 	    	i++;
 			if (i == m - 1) {
-				previousMNode = p;
+				previousNodeForM = p;
 			}
 			if (i == m) {
 				start.next = p;
@@ -43,26 +45,25 @@ public class Problem92_ReverseLinkedList2 {
 			}
 			p = p.next;
 	    }
-	    
-		if (start.next == null) {
-			return head;
-		}
 	        
 	    ListNode pre = start.next;
 	    ListNode current = pre.next;
+	    ListNode next = null;
+	    
+	    // connect to the part after n
 	    pre.next = end.next;
 	    
 	    // reverse list [m, n]    
 		while (current != null) {
-			ListNode next = current.next;
+			next = current.next;
 			current.next = pre;
 			pre = current;
 			current = next;
 		}
 	 
-	    //connect to previous part
-		if (previousMNode != null) {
-			previousMNode.next = pre;
+	    // connect to the part prior to m
+		if (previousNodeForM != null) {
+			previousNodeForM.next = pre;
 		} else {
 			return pre;
 		}
