@@ -39,7 +39,6 @@ public class Problem59_SpiralMatrix2 {
 			while (x + step < n) { // Right 4 -> 5
 				number++;
 				result[x][y] = number;
-				System.out.println(result[x][y]);
 				x++;
 			}
 			x--;
@@ -48,7 +47,6 @@ public class Problem59_SpiralMatrix2 {
 			while (y - step >= 0) { // Bottom 6 -> 7
 				number++;
 				result[x][y] = number;
-				System.out.println(result[x][y]);
 				y--;
 			}
 			y++;
@@ -58,12 +56,10 @@ public class Problem59_SpiralMatrix2 {
 			while (x - step >= 0) { // Left 8
 				number++;
 				result[x][y] = number;
-				System.out.println(result[x][y]);
 				x--;
 			}
 			x++;
 			y++;
-			System.out.println("left");
 		}
 	 
 	    return result;
