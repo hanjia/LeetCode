@@ -28,55 +28,50 @@ public class Problem54_SpiralMatrix {
         if(matrix == null || matrix.length == 0) 
         	return result;
  
-        int m = matrix.length;
-        int n = matrix[0].length;
+        int column = matrix.length;
+        int row = matrix[0].length;
  
         int x = 0; 
         int y = 0;
  
-        while(m>0 && n>0){
- 
-            //if one row/column left, no circle can be formed
-            if(m == 1){
-                for(int i = 0; i < n; i++){
-                    result.add(matrix[x][y++]);
-                }
-                break;
-            }else if(n == 1){
-                for(int i = 0; i < m; i++){
-                    result.add(matrix[x++][y]);
-                }
-                break;
-            }
- 
-            /**
-             * process a circle
-             */
-            //top - move right
-            for(int i = 0; i < n-1; i++){
-                result.add(matrix[x][y++]);
-            }
- 
-            //right - move down
-            for(int i = 0; i < m-1; i++){
-                result.add(matrix[x++][y]);
-            }
- 
-            //bottom - move left
-            for(int i = 0; i < n-1; i++){
-                result.add(matrix[x][y--]);
-            }
- 
-            //left - move up
-            for(int i = 0; i < m-1; i++){
-                result.add(matrix[x--][y]);
-            }
- 
-            x++;
-            y++;
-            m=m-2;
-            n=n-2;
-        }
+		while (column > 0 && row > 0) {
+			// if one row/column left, no circle can be formed
+			if (column == 1) {
+				for (int i = 0; i < row; i++) {
+					result.add(matrix[x][y++]);
+				}
+				break;
+			} else if (row == 1) {
+				for (int i = 0; i < column; i++) {
+					result.add(matrix[x++][y]);
+				}
+				break;
+			}
+
+			// process in a circle
+			for (int i = 0; i < row - 1; i++) { // top: move right 1 -> 2
+				result.add(matrix[x][y++]);
+			}
+
+			for (int i = 0; i < column - 1; i++) {	// right: move down 3 -> 6
+				result.add(matrix[x++][y]);
+			}
+
+			for (int i = 0; i < row - 1; i++) { // bottom: move left 9 -> 8
+				result.add(matrix[x][y--]);
+			}
+			
+			for (int i = 0; i < column - 1; i++) { // left: move up 7 -> 4
+				result.add(matrix[x--][y]);
+			}
+
+			// finish one circle then move inside
+			x++;
+			y++;
+			// important: minus by 2
+			column = column - 2;
+			row = row - 2;
+		}
  
         return result;
     }
