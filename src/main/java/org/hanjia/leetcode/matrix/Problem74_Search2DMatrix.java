@@ -24,27 +24,27 @@ public class Problem74_Search2DMatrix {
 		if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
 			return false;
 
-		int m = matrix.length;
-		int n = matrix[0].length;
+		int row = matrix.length;
+		int column = matrix[0].length;
 
 		int start = 0;
-		int end = m * n - 1;
+		int end = row * column - 1;
 
+		// binary search
 		while (start <= end) {
-			int mid = (start + end) / 2;
-			int midX = mid / n;
-			int midY = mid % n;
+			int middle = (start + end) / 2;
+			int midX = middle / column;
+			int midY = middle % column;
 
 			if (matrix[midX][midY] == target)
 				return true;
 
 			if (matrix[midX][midY] < target) {
-				start = mid + 1;
+				start = middle + 1;
 			} else {
-				end = mid - 1;
+				end = middle - 1;
 			}
 		}
-
 		return false;
 	}
 }

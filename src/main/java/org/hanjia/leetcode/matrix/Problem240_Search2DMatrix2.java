@@ -25,7 +25,6 @@ package org.hanjia.leetcode.matrix;
  */
 public class Problem240_Search2DMatrix2 {
     public boolean searchMatrix(int[][] matrix, int target) {
-        // check corner case
         if (matrix == null || matrix.length == 0) {
             return false;
         }
@@ -33,12 +32,15 @@ public class Problem240_Search2DMatrix2 {
             return false;
         }
         
-        int n = matrix.length; // number of rows
-        int m = matrix[0].length; // number of columns
-        int x = 0;
-        int y = m - 1;
+        int row = matrix.length;
+        int column = matrix[0].length;
         
-        while (x <= n - 1 && y >= 0) {
+        // starting from top right corner
+        int x = 0;
+        int y = column - 1;
+        
+        // staircase walk
+        while (x <= row - 1 && y >= 0) {
         	if (matrix[x][y] == target){
         		return true;
         	} else if (matrix[x][y] > target) {
