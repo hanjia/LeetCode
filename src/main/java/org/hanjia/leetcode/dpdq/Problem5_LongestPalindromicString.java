@@ -5,7 +5,7 @@ package org.hanjia.leetcode.dpdq;
  Problem 5: Given a string S, find the longest palindromic substring in S. 
  You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
  * 
- * Algorithm:
+ * Algorithm: Dynamic Programming
  * 
  * @author hanjia
  *
@@ -15,6 +15,7 @@ public class Problem5_LongestPalindromicString {
 	    boolean[][] table = new boolean[str.length()][str.length()];
 	    int max = 0;
 	    String longest = null;
+	    
 	    for (int i = str.length() - 1; i >= 0; i--) {
 	        for (int j = i; j < str.length(); j++) {
 	        	/**
@@ -23,13 +24,13 @@ public class Problem5_LongestPalindromicString {
 	        	 * Special case is the distance of i and j is smaller than 2
 	        	 * 
 	        	 */
-	            if (str.charAt(i) == str.charAt(j) && ((j - i <= 2) || table[i + 1][j - 1])) {
-	                table[i][j] = true;
-	                if (max < j - i + 1) {
-	                    max = j - i + 1;
-	                    longest = str.substring(i, j + 1);
-	                }
-	            }
+				if (str.charAt(i) == str.charAt(j) && ((j - i <= 2) || table[i + 1][j - 1])) {
+					table[i][j] = true;
+					if (max < j - i + 1) {
+						max = j - i + 1;
+						longest = str.substring(i, j + 1);
+					}
+				}
 	        }
 	    }
 	    return longest;

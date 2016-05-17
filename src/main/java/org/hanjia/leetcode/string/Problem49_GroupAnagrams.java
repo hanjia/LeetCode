@@ -42,10 +42,10 @@ public class Problem49_GroupAnagrams {
         		List<Integer> list = new ArrayList<Integer>();
                 list.add(i);
         		map.put(sortedString, list);
-        	}
-        	
+        	}      	
         }
 
+        // sort strings in the same group
         for(List<Integer> stringIndexes : map.values()){
         	List<String> stringGroup = new ArrayList<String>();
         	for(int index: stringIndexes){

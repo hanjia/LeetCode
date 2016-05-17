@@ -17,41 +17,38 @@ package org.hanjia.leetcode.string;
  *
  */
 public class Problem38_CountAndSay {
-	public static String countAndSay(int n) {
-        if(n <= 0) 
-            return null;
+	public String countAndSay(int n) {
+		if (n < 1)
+			return null;
 
-        int i = 1;
         String result = "1";
-        while(i < n){
-        	
-        	int count = 1;
-    		StringBuilder sb = new StringBuilder();
-    		
-    		for(int j = 1; j < result.length(); j++){ // To get the count and start from 1 instead of 0
-    			if (result.charAt(j) == result.charAt(j - 1)) {
-    				count++;
-    			} else {
-    				sb.append(count);
-    				sb.append(result.charAt(j - 1));
-    				count = 1;
-    			}
-    		}
-    		sb.append(count);
-    		sb.append(result.charAt(result.length() - 1));
-    		result = sb.toString(); //Update the result string
-        	i++;
-        }
+		for (int i = 1; i < n; i++) {
+			StringBuilder sb = new StringBuilder();
+			int count = 1;			
+			for (int j = 1; j < result.length(); j++) { // To get the count and start from 1 instead of 0
+				if (result.charAt(j) == result.charAt(j - 1)) {
+					count++;
+				} else {
+					sb.append(count);
+					sb.append(result.charAt(j - 1));
+					count = 1;
+				}
+			}
+			sb.append(count); // Count
+			sb.append(result.charAt(result.length() - 1)); // Say
+			result = sb.toString(); 
+		}
         return result;
     }
 	
 	public static void main(String[] args){
-		System.out.println(countAndSay(1));
-		System.out.println(countAndSay(2));
-		System.out.println(countAndSay(3));
-		System.out.println(countAndSay(4));
-		System.out.println(countAndSay(5));
-		System.out.println(countAndSay(6));
+		Problem38_CountAndSay countAndSay = new Problem38_CountAndSay();
+		System.out.println(countAndSay.countAndSay(1));
+		System.out.println(countAndSay.countAndSay(2));
+		System.out.println(countAndSay.countAndSay(3));
+		System.out.println(countAndSay.countAndSay(4));
+		System.out.println(countAndSay.countAndSay(5));
+		System.out.println(countAndSay.countAndSay(6));
 
 	}
 }

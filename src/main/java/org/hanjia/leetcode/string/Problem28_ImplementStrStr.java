@@ -10,29 +10,33 @@ package org.hanjia.leetcode.string;
 public class Problem28_ImplementStrStr {
 
 	public static int strStr(String haystack, String needle) {
-        if(haystack==null || needle==null)    
-            return 0;
- 
-        if(needle.length() == 0){
-            return 0;
-        }
-        
-        for(int i= 0; i < haystack.length(); i++){
-            if(i + needle.length() > haystack.length())
-                return -1;
-            
-            int m = i;
-            for(int j=0; j<needle.length(); j++){
-                if(needle.charAt(j)==haystack.charAt(m)){
-                    if(j==needle.length()-1) //If the last char of needle matches
-                        return i;
-                    m++;
-                }else{
-                    break;
-                }
-            }   
-        }
-        return -1;
+		if (haystack == null || needle == null)
+			return 0;
+
+		int needleLength = needle.length();
+		int haystackLength = haystack.length();
+		if (needleLength == 0) {
+			return 0;
+		}
+
+		for (int i = 0; i < haystackLength; i++) {
+			if (i + needleLength > haystackLength)
+				return -1;
+
+			int m = i;
+			for (int j = 0; j < needleLength; j++) {
+				if (needle.charAt(j) == haystack.charAt(m)) {
+					if (j == needleLength - 1) { // if the last char of needle matches
+						return i;
+					} else {
+						m++;
+					}
+				} else {
+					break;
+				}
+			}
+		}
+		return -1;
     }
 	
 	public static void main(String[] args){
