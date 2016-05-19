@@ -28,12 +28,25 @@ public class Problem214_ShortestPalindrome {
 		if (start == s.length())
 			return s;
 
-		// recursively to process
+		// recursively make the substring palindromic
 		String result = shortestPalindrome(s.substring(0, start));
 
 		String suffix = s.substring(start);
-		String prefix = new StringBuilder(suffix).reverse().toString();		
+		String prefix = new StringBuilder(suffix).reverse().toString();	
+
 		return prefix + result + suffix;
+	}
+	
+	public static void main(String[] args){
+		Problem214_ShortestPalindrome shortest = new Problem214_ShortestPalindrome();
+		String s1 = "abcba";
+		String s2 = "deabcba";
+		String s3 = "abcbaed";
+		String s4 = "abacdeaba";
+		System.out.println(shortest.shortestPalindrome(s1));
+		System.out.println(shortest.shortestPalindrome(s2));
+		System.out.println(shortest.shortestPalindrome(s3));
+		System.out.println(shortest.shortestPalindrome(s4));
 	}
 	
 }

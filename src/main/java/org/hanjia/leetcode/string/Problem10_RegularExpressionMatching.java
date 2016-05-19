@@ -39,27 +39,30 @@ public class Problem10_RegularExpressionMatching {
 		if (p.length() == 1) {
             if (s.length() == 0){
                 return false;
-            } else if ((p.charAt(0) != s.charAt(0)) && (p.charAt(0) != '.')) { 
+            } 
+            
+            if ((p.charAt(0) != s.charAt(0)) && (p.charAt(0) != '.')) { 
             	// if the first char of s and the first char of p is not the same, 
                 //and the char of p is not '.', return false
                 return false;
-            } else { 
-            	//otherwise, compare the rest of the string of s and p.
-                return isMatch(s.substring(1), p.substring(1));
             }
+            
+            //otherwise, compare the rest of the string of s and p.
+            return isMatch(s.substring(1), p.substring(1));
         }
          
         
 		if (p.charAt(1) != '*') { // case 1: when the second char of p is not '*'.
-			if (s.length() < 1) {
+			if (s.length() == 0) {
 				return false;
 			}
 			
 			if ((p.charAt(0) != s.charAt(0)) && (p.charAt(0) != '.')) {
 				return false;
-			} else {
-				return isMatch(s.substring(1), p.substring(1));
-			}
+			} 
+				
+			return isMatch(s.substring(1), p.substring(1));
+			
 		} else{ // case 2: when the second char of p is '*'.
             if (isMatch(s, p.substring(2))) {  //when the '*' stands for 0 preceding element
                 return true;

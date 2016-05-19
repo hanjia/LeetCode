@@ -40,8 +40,24 @@ public class Problem14_LongestCommonPrefix {
         return strs[0].substring(0, index);
     }
 	
+	public static String longestCommonPrefixSimplified(String[] strs) {
+		if (strs == null || strs.length == 0)
+			return null;
+		
+		for (int i = 0; i < strs[0].length(); i++) {
+			char target = strs[0].charAt(i);
+			for (String s: strs) {
+				if(i >= s.length() || s.charAt(i) != target)
+					return strs[0].substring(0, i);
+			}
+		}
+		
+		return strs[0];
+	}
+	
 	public static void main(String[] args){
-		String[] strs = {"ab","abwfwef","abc"};
+		String[] strs = {"ab","abwfwef","abc", "aoi0awefwoein"};
 		System.out.println(longestCommonPrefix(strs));
+		System.out.println(longestCommonPrefixSimplified(strs));
 	}
 }

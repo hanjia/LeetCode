@@ -26,53 +26,54 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
 		if(s == null || s.length() == 0 || words == null || words.length == 0)  
 	        return result;
 		
-        int wordLength = words[0].toCharArray().length;
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        for(String word: words){ // To fill up the map
-        	if(map.containsKey(word))
-        		map.put(word, map.get(word) + 1);
-        	else
-        		map.put(word, 1);
-        }
+        Map<String, Integer> map = new HashMap<String, Integer>(); // Create a map for word count
+		for (String word : words) {
+			if (map.containsKey(word))
+				map.put(word, map.get(word) + 1);
+			else
+				map.put(word, 1);
+		}
         
+        int wordLength = words[0].toCharArray().length;
         for(int i = 0; i < wordLength; i++){
             Map<String, Integer> currentMap = new HashMap<String, Integer>();
             int start = i; // starting index
             int count = 0; // number of qualified words
             
-            for(int j = i; j <= s.length() - wordLength; j += wordLength){
-            	String subString = s.substring(j, j + wordLength);
-            	if(map.containsKey(subString)){
-            		if(currentMap.containsKey(subString)){
-                        currentMap.put(subString, currentMap.get(subString) + 1);
-                    }else{
-                        currentMap.put(subString, 1);
-                    }
+            for (int j = i; j <= s.length() - wordLength; j += wordLength) {
+            	String subString = s.substring(j, j + wordLength); // Every time we check a fixed length of substring
+            	
+            	if (map.containsKey(subString)) {
+					if (currentMap.containsKey(subString)) {
+						currentMap.put(subString, currentMap.get(subString) + 1);
+					} else {
+						currentMap.put(subString, 1);
+					}
             		
             		count++;
-            		while(currentMap.get(subString) > map.get(subString)){
-                        String temp = s.substring(start, start + wordLength);
-                        if(currentMap.containsKey(temp)){
-                        	currentMap.put(temp, currentMap.get(temp) - 1);
-                        }
-                        count--;
-                        start += wordLength;
-                    }
+					while (currentMap.get(subString) > map.get(subString)) {
+						String temp = s.substring(start, start + wordLength);
+						if (currentMap.containsKey(temp)) {
+							currentMap.put(temp, currentMap.get(temp) - 1);
+						}
+						count--;
+						start += wordLength;
+					}
             		
-            		if(count == words.length){
+            		if (count == words.length) {
                         result.add(start); // find one result    
                         String temp = s.substring(start, start + wordLength); // shift right and update currentMap, count & starting index         
-                        if(currentMap.containsKey(temp)){
+                        if (currentMap.containsKey(temp)) {
                         	currentMap.put(temp, currentMap.get(temp) - 1);
                         }
                         count--;
                         start += wordLength;
                     }           		
-            	}else{
-                    currentMap.clear();
-                    start = j + wordLength;
-                    count = 0;           		
-            	}
+				} else {
+					currentMap.clear();
+					start = j + wordLength;
+					count = 0;
+				}
             }
         }
                

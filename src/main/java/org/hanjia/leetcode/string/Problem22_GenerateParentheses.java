@@ -8,32 +8,33 @@ import java.util.List;
  * For example, given n = 3, a solution set is:
  * "((()))", "(()())", "(())()", "()(())", "()()()"
  * 
- * @author hajia
+ * @author hanjia
  *
  */
 public class Problem22_GenerateParentheses {
 	
 	public static List<String> generateParenthesis(int n) {
-        ArrayList<String> result = new ArrayList<String>();
-        backtrack(result, "", n, n); //Using Depth-first Search
+        List<String> result = new ArrayList<String>();
+        backtrack(result, "", n, n); 
         return result;
     }
     
-    public static void backtrack(ArrayList<String> result, String s, int left, int right){
-        if(left > right) return; //if there are more "(" than ")" remaining, we will not be able to build a valid one so stop
+    public static void backtrack(List<String> result, String s, int left, int right){
+        if (left > right) //if there are more "(" than ")" remaining
+        	return; 
      
         if(left == 0 && right == 0){
             result.add(s);
             return;
         }
      
-        if(left>0){
-        	backtrack(result, s + "(", left-1, right);
-        }
-     
-        if(right>0){
-        	backtrack(result, s + ")", left, right-1);
-        }
+		if (left > 0) {
+			backtrack(result, s + "(", left - 1, right);
+		}
+
+		if (right > 0) {
+			backtrack(result, s + ")", left, right - 1);
+		}
     }
     
     public static void main(String[] args){

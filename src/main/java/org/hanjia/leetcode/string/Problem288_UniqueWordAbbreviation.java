@@ -66,14 +66,14 @@ public class Problem288_UniqueWordAbbreviation {
 	    return true;
 	}
 	
-	// Hash table – O(1) time
+	// Hashtable – O(1) time
 	// We should pre-process the dictionary to speed it up.
 	// The logic in isUnique(word) is tricky. You need to consider the following cases:
 	// - Does the word's abbreviation exists in the dictionary? If not, then it must be unique.
 	// - If above is yes, then it can only be unique if the grouping of the abbreviation contains no other words except word.
 	private final Map<String, Set<String>> abbrDict = new HashMap<String, Set<String>>();
 
-	public void ValidWordAbbrHashTable(String[] dictionary) {
+	public void validWordAbbrHashTable(String[] dictionary) {
 	    for (String s : dictionary) {
 	        String abbr = toAbbr(s);
 	        Set<String> words = abbrDict.containsKey(abbr) ? abbrDict.get(abbr) : new HashSet<String>();
@@ -85,14 +85,15 @@ public class Problem288_UniqueWordAbbreviation {
 	public boolean isUnique(String word) {
 	    String abbr = toAbbr(word);
 	    Set<String> words = abbrDict.get(abbr);
-	    return words == null || (words.size() == 1 && words.contains(word));
+	    return (words == null) || (words.size() == 1 && words.contains(word));
 	}
 
 	private String toAbbr(String s) {
-	    int n = s.length();
-	    if (n <= 2) {
+	    int length = s.length();
+	    if (length <= 2) {
 	        return s;
 	    }
-	    return "" + s.charAt(0) + String.valueOf(n - 2) + s.charAt(n - 1);
+	    String abbreviation = String.valueOf(length - 2); 
+	    return s.charAt(0) + abbreviation + s.charAt(length - 1);
 	}
 }

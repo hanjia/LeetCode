@@ -20,7 +20,7 @@ public class Problem13_RomanToInteger {
             if (cur <= pre) {  
                 total += cur;  
             } else {  
-                total = total - pre * 2 + cur;  
+                total = total - pre * 2 + cur;  // To handle subtraction cases: IV or XL, XC
             }  
         }
         return total;

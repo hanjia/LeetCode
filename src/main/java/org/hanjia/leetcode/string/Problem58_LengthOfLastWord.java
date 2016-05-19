@@ -21,17 +21,17 @@ public class Problem58_LengthOfLastWord {
             return 0;
         
         int length = 0;
-        boolean flag = false;
-        for(int i = s.length() - 1; i >= 0; i--){
-            char c = s.charAt(i);
-            if((c>='a' && c<='z') || (c>='A' && c<='Z')){
-                flag = true;
-                length++;
-            }else{
-                if(flag)
-                    return length;
-            }
-        }
+        boolean flag = false; // To check whether the string ends with a space
+		for (int i = s.length() - 1; i >= 0; i--) {
+			char c = s.charAt(i);
+			if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+				flag = true;
+				length++;
+			} else {
+				if (flag)
+					return length;
+			}
+		}
         return length;
     }
 }

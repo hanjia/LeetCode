@@ -6,38 +6,41 @@ import java.util.List;
 /**
  * Input:Digit string "23"
  * Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
- * @author hajia
+ * 
+ * 
+ * @author hanjia
  *
- *
- * Backtracking
  */
 public class Problem17_LetterCombinationsOfAPhoneNumber {
 
+	final String[] letters = new String[]{"", "", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
 	
-	public static void main(String[] args){
-		String digits = "31";
-		System.out.println(letterCombinations(digits));
-	}
-	
-    public static List<String> letterCombinations(String digits) {
-    	String[] letters = new String[]{"", "", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
+    public List<String> letterCombinations(String digits) {
         List<String> results = new ArrayList<String>();
         StringBuilder stringBuilder = new StringBuilder();
-        backtrack(digits, 0, letters, stringBuilder, results);
+        // Backtracking through recursion
+        backtrack(digits, 0, stringBuilder, results);
         return results;
     }
     
-    public static void backtrack(String digits, int number, String[] letters, StringBuilder stringBuilder, List<String> results){
-    	if (digits.length() == number) {
+    public void backtrack(String digits, int index, StringBuilder stringBuilder, List<String> results){
+    	if (digits.length() == index) {
     		if(stringBuilder.length() != 0)
     			results.add(stringBuilder.toString());
             return;
         }
-        String letter = letters[digits.charAt(number) - '0'];
+    	
+        String letter = letters[digits.charAt(index) - '0'];
         for (int i = 0; i < letter.length(); i++) {
         	stringBuilder.append(letter.charAt(i));
-        	backtrack(digits, number + 1, letters, stringBuilder, results);
-            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        	backtrack(digits, index + 1, stringBuilder, results);
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1); // Remove one possible solution to process the next
         }
     }
+    
+	public static void main(String[] args){
+		Problem17_LetterCombinationsOfAPhoneNumber phoneNumber = new Problem17_LetterCombinationsOfAPhoneNumber();
+		String digits = "38";
+		System.out.println(phoneNumber.letterCombinations(digits));
+	}
 }
