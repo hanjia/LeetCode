@@ -44,14 +44,14 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
             	String subString = s.substring(j, j + wordLength); // Every time we check a fixed length of substring
             	
             	if (map.containsKey(subString)) {
+            		count++;
 					if (currentMap.containsKey(subString)) {
 						currentMap.put(subString, currentMap.get(subString) + 1);
 					} else {
 						currentMap.put(subString, 1);
 					}
-            		
-            		count++;
-					while (currentMap.get(subString) > map.get(subString)) {
+            		            		
+					if (currentMap.get(subString) > map.get(subString)) {
 						String temp = s.substring(start, start + wordLength);
 						if (currentMap.containsKey(temp)) {
 							currentMap.put(temp, currentMap.get(temp) - 1);
@@ -60,8 +60,8 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
 						start += wordLength;
 					}
             		
-            		if (count == words.length) {
-                        result.add(start); // find one result    
+            		if (count == words.length) { // find one result 
+                        result.add(start);    
                         String temp = s.substring(start, start + wordLength); // shift right and update currentMap, count & starting index         
                         if (currentMap.containsKey(temp)) {
                         	currentMap.put(temp, currentMap.get(temp) - 1);
@@ -81,7 +81,7 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
     }
 	
 	public static void main(String[] args){
-		String s = "cbarfoobarthefoobarman";
+		String s = "cbarfoofoofoobarthefoobarfooman";
 		String[] words = {"foo","bar"};
 		System.out.println(findSubstring(s, words));
 	}

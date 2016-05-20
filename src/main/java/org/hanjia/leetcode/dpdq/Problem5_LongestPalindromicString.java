@@ -14,19 +14,18 @@ public class Problem5_LongestPalindromicString {
 	public String longestPalindromeDPSolution (String str) {
 	    boolean[][] table = new boolean[str.length()][str.length()];
 	    int max = 0;
-	    String longest = null;
+	    String longest = "";
 	    
 	    for (int i = str.length() - 1; i >= 0; i--) {
 	        for (int j = i; j < str.length(); j++) {
 	        	/**
-	        	 * For j >= i
-	        	 * LPS[i, j] = true if LPS[i+1][j-1] is true and character i and j are the same
+	        	 * P[i, j] = true if P[i+1][j-1] is true and character i and j are the same
 	        	 * Special case is the distance of i and j is smaller than 2
-	        	 * 
 	        	 */
 				if (str.charAt(i) == str.charAt(j) && ((j - i <= 2) || table[i + 1][j - 1])) {
 					table[i][j] = true;
-					if (max < j - i + 1) {
+					
+					if (max < j - i + 1) { // Update result
 						max = j - i + 1;
 						longest = str.substring(i, j + 1);
 					}
