@@ -45,16 +45,16 @@ class NumArray{
 // Caching – O(1) time per query, O(n) space
 // DP formula: sumRange(i, j) = sum[j + 1] - sum[i]
 class NumArray {
-	private int[] sum;
+	private int[] sums;
 
 	public NumArray(int[] nums) {
-	    sum = new int[nums.length + 1];
+		sums = new int[nums.length + 1];
 	    for (int i = 0; i < nums.length; i++) {
-	        sum[i + 1] = sum[i] + nums[i];
+	    	sums[i + 1] = sums[i] + nums[i];
 	    }
 	}
 
 	public int sumRange(int i, int j) {
-	    return sum[j + 1] - sum[i];
+	    return sums[j + 1] - sums[i];
 	}
 }

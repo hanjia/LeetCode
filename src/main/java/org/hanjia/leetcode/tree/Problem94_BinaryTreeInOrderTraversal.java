@@ -27,15 +27,14 @@ public class Problem94_BinaryTreeInOrderTraversal {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<Integer>();
         Stack<TreeNode> stack = new Stack<TreeNode>();
-        TreeNode current = root;        
+        TreeNode current = root;
         
-        while(current != null || !stack.isEmpty()){
+        while(!stack.isEmpty() || current != null){
         	while(current != null){
         		stack.push(current);
         		current = current.left;
         	}        	
         	current = stack.pop();
-        	System.out.println(current.val);
         	result.add(current.val);
         	current = current.right;
         }
@@ -52,6 +51,6 @@ public class Problem94_BinaryTreeInOrderTraversal {
     	root.right.left = new TreeNode(6);
     	root.right.right = new TreeNode(7);  
     	Problem94_BinaryTreeInOrderTraversal inorder = new Problem94_BinaryTreeInOrderTraversal();
-    	inorder.inorderTraversal(root);
+    	System.out.println(inorder.inorderTraversal(root));
     }
 }

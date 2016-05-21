@@ -13,7 +13,7 @@ import java.util.Stack;
  */
 public class Problem32_LongestValidParentheses {
 
-	public static int longestValidParenthesesDPSolution(String s) {
+	public int longestValidParenthesesDPSolution(String s) {
 		if (s.length() == 0)
 	        return 0;
 		int maxLength = 0;
@@ -41,7 +41,7 @@ public class Problem32_LongestValidParentheses {
 		return maxLength;
 	}
 	
-	public static int longestValidParenthesesStackSolution(String s) {
+	public int longestValidParenthesesStackSolution(String s) {
 		if (s.length() == 0)
 	        return 0;
 		int maxLength = 0;
@@ -61,6 +61,12 @@ public class Problem32_LongestValidParentheses {
 		}
 		
 		return maxLength;
+	}
+	
+	public static void main(String[] args){
+		Problem32_LongestValidParentheses validParentheses = new Problem32_LongestValidParentheses();
+		String s = ")()()(())";
+		System.out.println(validParentheses.longestValidParenthesesStackSolution(s));
 	}
 
 }
