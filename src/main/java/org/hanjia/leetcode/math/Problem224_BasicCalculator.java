@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.stack;
+package org.hanjia.leetcode.math;
 
 import java.util.ArrayList;
 import java.util.List;

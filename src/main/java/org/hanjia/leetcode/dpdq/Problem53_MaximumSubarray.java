@@ -11,17 +11,19 @@ package org.hanjia.leetcode.dpdq;
  *
  */
 public class Problem53_MaximumSubarray {
-    public int maxSubArray(int[] A) {
-		int[] sum = new int[A.length];
+    public int maxSubArray(int[] array) {
+		int[] sum = new int[array.length];
     	
-		int max = A[0];
-		sum[0] = A[0];
+		int max = array[0];
+		sum[0] = array[0];
  
-		for (int i = 1; i < A.length; i++) {
-			sum[i] = Math.max(A[i], sum[i - 1] + A[i]); // DP condition: We should ignore the sum of the previous n-1 elements if nth element is greater than the sum.
+		for (int i = 1; i < array.length; i++) {
+			/**
+			 * DP condition: We should ignore the sum of the previous n-1 elements if nth element is greater than the sum.
+			 */
+			sum[i] = Math.max(array[i], array[i] + sum[i - 1]);
 			max = Math.max(max, sum[i]);
 		}
- 
 		return max;
 	}
 }

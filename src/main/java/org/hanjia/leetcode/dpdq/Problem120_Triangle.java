@@ -1,9 +1,25 @@
 package org.hanjia.leetcode.dpdq;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 
+ * Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+ * 
+ * For example, given the following triangle
+	[
+	     [2],
+	    [3,4],
+	   [6,5,7],
+	  [4,1,8,3]
+	]
+ * The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+ * 
+ * 
+ * @author hanjia
+ *
+ */
 public class Problem120_Triangle {
 	public int minimumTotal(List<List<Integer>> triangle) {
 	    if(triangle.size() == 0)
@@ -15,17 +31,13 @@ public class Problem120_Triangle {
 	    // Set initial values
 		for (int i = 0; i < numOfRows; i++) {
 			result[i] = triangle.get(numOfRows - 1).get(i);
-		}		
-		System.out.println(Arrays.toString(result));
-		
+		}				
 		
 		for (int i = numOfRows - 2; i >= 0; i--) { // Start from the (bottom - 1) level
 			for (int j = 0; j <= i; j++) {
 				result[j] = Math.min(result[j], result[j + 1]) + triangle.get(i).get(j);
-				System.out.println(Arrays.toString(result));
 			}
-		}
-		System.out.println(Arrays.toString(result));
+		}		
 	    return result[0];
 	}
 
