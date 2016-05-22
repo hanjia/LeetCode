@@ -28,13 +28,15 @@ public class Problem120_Triangle {
 	    int numOfRows = triangle.size();
 	    int[] result = new int[numOfRows];
 	    
-	    // Set initial values
+	    // Set initial values: values of the last row
 		for (int i = 0; i < numOfRows; i++) {
 			result[i] = triangle.get(numOfRows - 1).get(i);
 		}				
 		
-		for (int i = numOfRows - 2; i >= 0; i--) { // Start from the (bottom - 1) level
+		// Bottom-up: start from the (bottom - 1) level
+		for (int i = numOfRows - 2; i >= 0; i--) { 
 			for (int j = 0; j <= i; j++) {
+				// DP Formula: sum(i,j) = min { sum(i+1,j), sum(i+1,j+1) } + value of (i,j)
 				result[j] = Math.min(result[j], result[j + 1]) + triangle.get(i).get(j);
 			}
 		}		

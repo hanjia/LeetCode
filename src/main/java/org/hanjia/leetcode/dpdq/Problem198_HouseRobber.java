@@ -30,14 +30,25 @@ public class Problem198_HouseRobber {
 	// The answer will be calculated as f(n). 
 	// We could use an array to store and calculate the result, 
 	// but since at each step you only need the previous two maximum values, two variables are suffice.
-	public int rob(int[] num) {
-	    int prevMax = 0;
-	    int currMax = 0;
-	    for (int x : num) {
-	        int temp = currMax;
-	        currMax = Math.max(prevMax + x, currMax);
-	        prevMax = temp;
-	    }
-	    return currMax;
+
+	public int rob(int[] nums) {
+		if (nums == null || nums.length == 0)
+			return 0;
+
+		if (nums.length == 1)
+			return nums[0];
+
+		int[] amount = new int[nums.length];
+		amount[0] = nums[0];
+		amount[1] = Math.max(nums[0], nums[1]);
+
+		for (int i = 2; i < nums.length; i++) {
+			/**
+			 * dp[i] = Math.max(dp[i-1], dp[i-2]+nums[i])
+			 */
+			amount[i] = Math.max(amount[i - 2] + nums[i], amount[i - 1]);
+		}
+
+		return amount[nums.length - 1];
 	}
 }

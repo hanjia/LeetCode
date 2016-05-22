@@ -15,36 +15,39 @@ The overall run time complexity should be O(log (m+n)).
 public class Problem4_MedianOfTwoSortedArray {
 
 	public double findMedianSortedArrays(int A[], int B[]) {
-	        int m = A.length;
-	        int n = B.length;
-	        int total = A.length + B.length;  
-	        if (total%2 != 0)
-	            return (double)findKth(A, 0, m-1, B, 0, n-1, total/2 + 1);
-	        else {
-	            return (double)(findKth(A, 0, m-1, B, 0, n-1, total/2) + findKth(A, 0, m-1, B, 0, n-1, total/2 + 1))/2;
-	        }
+		int lengthA = A.length;
+		int lengthB = B.length;
+		int total = A.length + B.length;
+
+		if (total % 2 != 0)
+			return (double) findKth(A, 0, lengthA - 1, B, 0, lengthB - 1, total / 2 + 1);
+		else {
+			return (double) (findKth(A, 0, lengthA - 1, B, 0, lengthB - 1, total / 2) 
+					+ findKth(A, 0, lengthA - 1, B, 0, lengthB - 1, total / 2 + 1)) / 2;
+		}
 	}
 	
-	public int findKth(int a[], int astart, int aend, int b[], int bstart, int bend, int k)  {  
-			int m = aend - astart + 1;
-			int n = bend - bstart + 1;
-		    
-			if(m>n)
-				return findKth(b,bstart,bend,a,astart,aend,k);
-			if(m==0)
-				return b[k-1];
-			if(k==1)
-				return Math.min(a[astart],b[bstart]);
-	   
-			int partA = Math.min(k/2,m);
-			int partB = k - partA;
-			
-			if(a[astart+partA-1] < b[bstart+partB-1])
-				return findKth(a,astart+partA,aend,b,bstart,bend,k-partA);
-			else if(a[astart+partA-1] > b[bstart+partB-1])
-				return findKth(a,astart,aend,b,bstart+partB,bend,k-partB);
-			else
-				return a[astart+partA-1];
+	public int findKth(int a[], int startA, int endA, int b[], int startB, int endB, int k)  {  
+		int lengthA = endA - startA + 1;
+		int lengthB = endB - startB + 1;
+
+		if (lengthA == 0)
+			return b[k - 1];
+		if (k == 1)
+			return Math.min(a[startA], b[startB]);
+				
+		if (lengthA > lengthB)
+			return findKth(b, startB, endB, a, startA, endA, k);
+
+		int partA = Math.min(k / 2, lengthB);
+		int partB = k - partA;
+
+		if (a[startA + partA - 1] < b[startB + partB - 1])
+			return findKth(a, startA + partA, endA, b, startB, endB, k - partA);
+		else if (a[startA + partA - 1] > b[startB + partB - 1])
+			return findKth(a, startA, endA, b, startB + partB, endB, k - partB);
+		else
+			return a[startA + partA - 1];
 	}	
 	
 }

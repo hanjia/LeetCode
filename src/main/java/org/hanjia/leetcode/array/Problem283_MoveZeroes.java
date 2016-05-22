@@ -15,14 +15,15 @@ package org.hanjia.leetcode.array;
  */
 public class Problem283_MoveZeroes {
     public static void moveZeroes(int[] nums) {
-        int j = 0;
+        int pointerForZero = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != 0) {
-                if (i > j) {
-                    nums[j] = nums[i];
+                if (i > pointerForZero) {
+                	// swap zero and non-zero elements
+                    nums[pointerForZero] = nums[i];
                     nums[i] = 0;
                 }
-                j++;
+                pointerForZero++;
             }
         }
     }
