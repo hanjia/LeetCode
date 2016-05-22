@@ -19,11 +19,13 @@ public class Problem11_ContainerWithMostWater {
         while(i < j){
             if(height[i] > height[j]){
                 int volume = height[j] * (j - i);
-                if(volume > maxVolume) maxVolume = volume;
+                if(volume > maxVolume) 
+                	maxVolume = volume;
                 j--;
             }else{
                 int volume = height[i] * (j - i);
-                if(volume > maxVolume) maxVolume = volume;
+                if(volume > maxVolume) 
+                	maxVolume = volume;
                 i++;
             }
         }    

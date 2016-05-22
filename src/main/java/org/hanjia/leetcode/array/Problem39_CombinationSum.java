@@ -47,8 +47,7 @@ public class Problem39_CombinationSum {
 	 
 	public void combinationSum(int[] candidates, int target, int start, List<Integer> current, List<List<Integer>> result){
 	   if(target == 0){
-	       List<Integer> temp = new ArrayList<Integer>(current);
-	       result.add(temp);
+	       result.add(new ArrayList<Integer>(current));
 	       return;
 	   }
 	 

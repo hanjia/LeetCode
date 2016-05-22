@@ -14,25 +14,25 @@ package org.hanjia.leetcode.array;
  *
  */
 public class Problem55_JumpGame {
-	public boolean canJump(int[] A) {
-		if (A.length <= 1){
+	public boolean canJump(int[] array) {
+		if (array.length <= 1){
 			return true;
 		}
 		
-		int max = A[0]; // max stands for the largest index that can be reached.
+		int max = array[0]; // max stands for the largest index that can be reached.
 
-		for (int i = 0; i < A.length; i++) {
+		for (int i = 0; i < array.length; i++) {
 			// if not enough to go to next
-			if (max <= i && A[i] == 0)
+			if (max <= i && array[i] == 0)
 				return false;
 
 			// update max
-			if (i + A[i] > max) {
-				max = i + A[i];
+			if (i + array[i] > max) {
+				max = i + array[i];
 			}
 
 			// max is enough to reach the end
-			if (max >= A.length - 1)
+			if (max >= array.length - 1)
 				return true;
 		}
 	 

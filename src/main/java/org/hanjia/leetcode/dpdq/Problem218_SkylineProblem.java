@@ -83,7 +83,16 @@ public class Problem218_SkylineProblem {
 	}
 	
 	public List<int[]> drawSkylinesHelper(Building[] buildings, int start, int end) {
+		if (end - start <= 1) {
+			
+		}
 		return null;
+	}
+	
+	public List<int[]> mergeSkyline(List<int[]> L, List<int[]> right) {
+		List<int[]> merged = null;
+		
+		return merged;
 	}
 }
 

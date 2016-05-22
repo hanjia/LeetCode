@@ -53,4 +53,10 @@ public class Problem77_Combinations {
     		current.remove(current.size() - 1);
     	}
     }
+    
+	public static void main(String[] args) {
+		Problem77_Combinations combination = new Problem77_Combinations();
+		List<List<Integer>> result = combination.combine(4, 2);
+		System.out.println(result);
+	}
 }

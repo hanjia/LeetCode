@@ -22,43 +22,38 @@ package org.hanjia.leetcode.array;
  */
 public class Problem79_WordSearch {
 	public boolean exist(char[][] board, String word) {
-	    int m = board.length;
-	    int n = board[0].length;
+	    int rows = board.length;
+	    int columns = board[0].length;
 	 
-	    boolean result = false;
-	    for(int i = 0; i < m; i++){
-	        for(int j = 0; j < n; j++){
-	           if(dfs(board, word, i, j, 0)){
-	               result = true;
+	    for(int i = 0; i < rows; i++){
+	        for(int j = 0; j < columns; j++){
+	           if(backtrack(board, word, i, j, 0)){
+	               return true;
 	           }
 	        }
-	    }
-	 
-	    return result;
+	    }	 
+	    return false;
 	}
 	 
-	public boolean dfs(char[][] board, String word, int i, int j, int k) {
-		int m = board.length;
-		int n = board[0].length;
-
-		if (i < 0 || j < 0 || i >= m || j >= n) {
+	public boolean backtrack(char[][] board, String word, int i, int j, int wordIndex) {
+		if (i < 0 || j < 0 || i >= board.length || j >= board[0].length) {
 			return false;
 		}
 
-		if (board[i][j] == word.charAt(k)) {
+		if (board[i][j] == word.charAt(wordIndex)) {
 			char temp = board[i][j];
-			board[i][j] = '#';
-			if (k == word.length() - 1) {
+			board[i][j] = '#'; // Override the value to avoid moving back to the same element in the future
+			
+			if (wordIndex == word.length() - 1) {
 				return true;
-			} else if (dfs(board, word, i - 1, j, k + 1)
-					|| dfs(board, word, i + 1, j, k + 1)
-					|| dfs(board, word, i, j - 1, k + 1)
-					|| dfs(board, word, i, j + 1, k + 1)) {
+			} else if (backtrack(board, word, i - 1, j, wordIndex + 1)
+					|| backtrack(board, word, i + 1, j, wordIndex + 1)
+					|| backtrack(board, word, i, j - 1, wordIndex + 1)
+					|| backtrack(board, word, i, j + 1, wordIndex + 1)) {
 				return true;
 			}
 			board[i][j] = temp;
 		}
-
 		return false;
 	}
 }

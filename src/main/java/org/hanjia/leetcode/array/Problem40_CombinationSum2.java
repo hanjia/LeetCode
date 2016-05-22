@@ -32,7 +32,6 @@ public class Problem40_CombinationSum2 {
 	 * 
 	 * Backtracking
 	 * 
-	 * 
 	 * @param num
 	 * @param target
 	 * @return
@@ -55,8 +54,7 @@ public class Problem40_CombinationSum2 {
 	 
 	public static void getCombination(int[] num, int target, int start, List<Integer> current, List<List<Integer>> result){
 		if (target == 0) {
-			List<Integer> temp = new ArrayList<Integer>(current);
-			result.add(temp);
+			result.add(new ArrayList<Integer>(current));
 			return;
 		}
 	 
@@ -64,7 +62,7 @@ public class Problem40_CombinationSum2 {
 			if (target < num[i])
 				continue;
 			current.add(num[i]);
-			getCombination(num, target - num[i], i + 1, current, result); // Note start is (i+1), because any element can only used for once 
+			getCombination(num, target - num[i], i + 1, current, result); // Note that start is (i+1), because any element can only used for once 
 			current.remove(current.size() - 1);
 		}
 	}
