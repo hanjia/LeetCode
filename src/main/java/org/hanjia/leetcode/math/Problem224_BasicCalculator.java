@@ -27,17 +27,15 @@ public class Problem224_BasicCalculator {
 		char[] array = s.toCharArray();
 		StringBuilder sb = new StringBuilder();
 		
+		
 		for (int i = 0; i < array.length; i++) {
-			if (array[i] == ' ')
-				continue;
-	 
-			if (array[i] >= '0' && array[i] <= '9') {
+			if (array[i] >= '0' && array[i] <= '9') { // Numbers
 				sb.append(array[i]);
 	 
 				if (i == array.length - 1) {
 					stack.push(sb.toString());
 				}
-			} else {
+			} else { // Operators
 				if (sb.length() > 0) {
 					stack.push(sb.toString());
 					sb = new StringBuilder();
@@ -80,7 +78,7 @@ public class Problem224_BasicCalculator {
 			String element = stack.pop();
 			subset.add(0, element);
 		}
-	 
+
 		int result = 0;
 		for (int i = subset.size() - 1; i > 0; i = i - 2) {
 			if (subset.get(i - 1).equals("-")) {
@@ -98,7 +96,7 @@ public class Problem224_BasicCalculator {
 	
 	public static void main(String[] args){
 		Problem224_BasicCalculator calculator = new Problem224_BasicCalculator();
-		String s = "(1+(4+5+2)-3)+(6+8)";
+		String s = "((11+4)+(5+2))-(3-(6+8))";
 		System.out.println(calculator.calculate(s));
 	}
 }

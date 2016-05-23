@@ -10,27 +10,26 @@ package org.hanjia.leetcode.math;
 public class Problem50_Power {
 	
 	public double myPow(double x, int n) {
-	    if (n > 0) {
-	        return pow(x, n);
-	    } else {
-	        return 1/pow(x,-n);
-	    }
+		if (n > 0) {
+			return power(x, n);
+		} else {
+			return 1 / power(x, -n);
+		}
 	}
 
-	public double pow(double x, int n) {
-	    if (n == 0) {
-	        return 1;
-	    }
-	    if (n == 1) {
-	        return x;
-	    }
-	    
-	    double v = pow(x, n/2);
-	    
-	    if (n % 2 == 0) {
-	        return v*v;
-	    } else {
-	        return v*v*x;
-	    }
+	public double power(double x, int n) {
+		if (n == 0) {
+			return 1;
+		}
+		if (n == 1) {
+			return x;
+		}
+
+		double half = power(x, n / 2); // Divide
+		if (n % 2 == 0) {
+			return half * half;
+		} else {
+			return half * half * x;
+		}
 	}
 }

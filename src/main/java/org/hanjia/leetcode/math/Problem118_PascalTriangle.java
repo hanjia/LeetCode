@@ -32,9 +32,9 @@ public class Problem118_PascalTriangle {
             List<Integer> row = new ArrayList<Integer>();
             row.add(1);
             for (int j = 1; j < i; j++) {
-                List<Integer> pre = result.get(i-1);
-                int n = pre.get(j-1) + pre.get(j);
-                row.add(n);
+                List<Integer> previousRow = result.get(i-1);
+                int sum = previousRow.get(j-1) + previousRow.get(j); // Pascal Triangle's characteristic
+                row.add(sum);
             }
             if (i != 0) {
                 row.add(1);    

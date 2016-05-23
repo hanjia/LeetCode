@@ -13,17 +13,17 @@ public class Problem231_PowerOfTwo {
 	    if (n < 0) {
 	        return false;
 	    }
-	    boolean once = false;
 	    while (n > 0) {
 	        if ((n & 1) == 1) {
-	            if (once) {
-	                return false;
-	            } else {
-	                once = true;
-	            }
+	        	return false;
 	        }
 	        n = n >> 1;
 	    }
-	    return once;
+	    return true;
+	}
+	
+	public static void main(String[] args){
+		Problem231_PowerOfTwo power = new Problem231_PowerOfTwo();
+		System.out.println(power.isPowerOfTwo(1025));
 	}
 }

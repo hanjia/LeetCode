@@ -19,17 +19,16 @@ import java.util.List;
 public class Problem119_PascalTriangle2 {
 
 	public List<Integer> getRow(int rowIndex) {
-		List<Integer> result = new ArrayList<Integer>();
-		if(rowIndex < 0)
+		if(rowIndex < 1)
 			return null;
+		List<Integer> result = new ArrayList<Integer>();
 		result.add(1);	
+		
 		for (int i = 1; i <= rowIndex; i++) {
 			for (int j = result.size() - 2; j >= 0; j--) {
 				result.set(j + 1, result.get(j) + result.get(j + 1)); // Pascal Triangle's characteristic
-				System.out.println(result);
 			}
 			result.add(1);
-			System.out.println("Done with row " + i + "with result: " + result);
 		}       
         return result;
 	}

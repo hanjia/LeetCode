@@ -78,21 +78,53 @@ public class Problem218_SkylineProblem {
     }
 	
 	// Divide And Queuer
-	public List<int[]> getSkyline(Building[] buildings) {
-		return drawSkylinesHelper(buildings, 0, buildings.length);
+	public List<int[]> getSkylineDQ(int[][] buildings) {
+		return drawSkylinesHelper(buildings, 0, buildings.length - 1);
 	}
 	
-	public List<int[]> drawSkylinesHelper(Building[] buildings, int start, int end) {
+	public List<int[]> drawSkylinesHelper(int[][] buildings, int start, int end) {
 		if (end - start <= 1) {
-			
-		}
-		return null;
+			int mid = (start + end) / 2;
+	        return mergeSkyline(drawSkylinesHelper(buildings, start, mid), drawSkylinesHelper(buildings, mid + 1, end));
+		} else {
+            List<int[]> result = new ArrayList<int[]>();
+			result.add(new int[] { buildings[start][0], buildings[start][2] });
+			result.add(new int[] { buildings[start][1], 0 });
+            return result;
+        }
 	}
 	
-	public List<int[]> mergeSkyline(List<int[]> L, List<int[]> right) {
-		List<int[]> merged = null;
-		
-		return merged;
+	public List<int[]> mergeSkyline(List<int[]> left, List<int[]> right) {
+		List<int[]> mergedList = new ArrayList<int[]>();
+        int h1 = 0, h2 = 0;
+        
+        while (left.size() > 0 && right.size() > 0) {
+            int x = 0, h = 0;
+            if (left.get(0)[0] < right.get(0)[0]) {
+                x = left.get(0)[0];
+                h1 = left.get(0)[1];
+                h = Math.max(h1, h2);
+                left.remove(0);
+            } else if (left.get(0)[0] > right.get(0)[0]) {
+                x = right.get(0)[0];
+                h2 = right.get(0)[1];
+                h = Math.max(h1, h2);
+                right.remove(0);
+            } else {
+                x = left.get(0)[0];
+                h1 =left.get(0)[1];
+                h2 = right.get(0)[1];
+                h = Math.max(h1, h2);
+                left.remove(0);
+                right.remove(0);
+            }
+            if (mergedList.size() == 0 || h != mergedList.get(mergedList.size() - 1)[1]) {
+            	mergedList.add(new int[] { x, h });
+            }
+        }
+        mergedList.addAll(left);
+        mergedList.addAll(right);
+        return mergedList;
 	}
 }
 

@@ -52,7 +52,7 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
 					}
             		            		
 					if (currentMap.get(subString) > map.get(subString)) {
-						String temp = s.substring(start, start + wordLength);
+						String temp = s.substring(start, start + wordLength); // shift right and update currentMap, count & starting index 
 						if (currentMap.containsKey(temp)) {
 							currentMap.put(temp, currentMap.get(temp) - 1);
 						}
@@ -62,6 +62,7 @@ public class Problem30_SubstringWithConcatenationOfAllWords {
             		
             		if (count == words.length) { // find one result 
                         result.add(start);    
+                        
                         String temp = s.substring(start, start + wordLength); // shift right and update currentMap, count & starting index         
                         if (currentMap.containsKey(temp)) {
                         	currentMap.put(temp, currentMap.get(temp) - 1);
