@@ -30,11 +30,11 @@ import java.util.List;
 public class Problem90_Subsets2 {
     public List<List<Integer>> subsetsWithDup(int[] num) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        List<Integer> list = new ArrayList<Integer>();
         if (num == null || num.length == 0) {
             return result;
         }
         Arrays.sort(num);
+        List<Integer> list = new ArrayList<Integer>();
         helper(num, 0, result, list);
         return result;
     }
@@ -42,13 +42,13 @@ public class Problem90_Subsets2 {
     private void helper(int[] num, int start, List<List<Integer>> result, List<Integer> list) {
         result.add(new ArrayList<Integer>(list));
         
-        for (int i = start; i < num.length; i++) {
-            if (i != start && num[i] == num[i - 1]) {
-                continue;
-            }    
-            list.add(num[i]);
-            helper(num, i + 1, result, list);
-            list.remove(list.size() - 1);
-        }
+		for (int i = start; i < num.length; i++) {
+			if (i != start && num[i] == num[i - 1]) {
+				continue;
+			}
+			list.add(num[i]);
+			helper(num, i + 1, result, list);
+			list.remove(list.size() - 1);
+		}
     }
 }

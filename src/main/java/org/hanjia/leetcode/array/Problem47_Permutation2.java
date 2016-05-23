@@ -43,9 +43,8 @@ public class Problem47_Permutation2 {
 		return result;
 	}
 	
-	private static void permuteUnique(int[] nums, int start, List<List<Integer>> result) {
-		 
-		if (start >= nums.length ) {
+	private static void permuteUnique(int[] nums, int start, List<List<Integer>> result) {		 
+		if (start >= nums.length) {
 			List<Integer> item = convertArrayToList(nums);
 			result.add(item);
 		}
