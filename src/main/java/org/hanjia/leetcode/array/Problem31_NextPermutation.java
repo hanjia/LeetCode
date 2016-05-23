@@ -1,6 +1,5 @@
 package org.hanjia.leetcode.array;
 
-
 /**
  * 
  * Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers. 
@@ -17,8 +16,8 @@ package org.hanjia.leetcode.array;
  *
  */
 public class Problem31_NextPermutation {
-    public static void nextPermutation(int[] nums) {
-    	int p = 0;
+    public void nextPermutation(int[] nums) {
+    	int p = 0; // Find the first element that is less than its previous one
     	for(int i = nums.length - 2 ; i >= 0; i--){
     		if(nums[i] < nums[i+1]){
     			p = i;
@@ -26,7 +25,7 @@ public class Problem31_NextPermutation {
     		}
     	}
     	
-    	int q = 0;
+    	int q = 0; // Find the first element that is greater than p
     	for(int j = nums.length -1 ; j >= 0; j--){
     		if(nums[j] > nums[p]){
     			q = j;
@@ -44,6 +43,7 @@ public class Problem31_NextPermutation {
     	nums[p] = nums[q];
     	nums[q] = temp;
     	
+    	// Reverse from p to the end
     	if(p < nums.length - 1){
     		reverse(nums, p + 1, nums.length - 1);
     	}
@@ -57,6 +57,15 @@ public class Problem31_NextPermutation {
     		nums[start] = temp;
     		end--;
     		start++;
+    	}
+    }
+    
+    public static void main(String[] args){
+    	int[] nums = {1,2,4,3};
+    	Problem31_NextPermutation nextPerm = new Problem31_NextPermutation();
+    	nextPerm.nextPermutation(nums);
+    	for(int num : nums) {
+    		System.out.println(num);
     	}
     }
 }
