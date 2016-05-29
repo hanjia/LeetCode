@@ -83,10 +83,12 @@ public class Problem218_SkylineProblem {
 	}
 	
 	public List<int[]> drawSkylinesHelper(int[][] buildings, int start, int end) {
-		if (end - start <= 1) {
+		if (end - start >= 1) {
 			int mid = (start + end) / 2;
-	        return mergeSkyline(drawSkylinesHelper(buildings, start, mid), drawSkylinesHelper(buildings, mid + 1, end));
-		} else {
+			List<int[]> leftSkyline = drawSkylinesHelper(buildings, start, mid); // Half of the buildings
+			List<int[]> rightSkyline = drawSkylinesHelper(buildings, mid + 1, end);
+	        return mergeSkyline(leftSkyline, rightSkyline);
+		} else { // Only one building left
             List<int[]> result = new ArrayList<int[]>();
 			result.add(new int[] { buildings[start][0], buildings[start][2] });
 			result.add(new int[] { buildings[start][1], 0 });
@@ -97,34 +99,43 @@ public class Problem218_SkylineProblem {
 	public List<int[]> mergeSkyline(List<int[]> left, List<int[]> right) {
 		List<int[]> mergedList = new ArrayList<int[]>();
         int h1 = 0, h2 = 0;
-        
+
         while (left.size() > 0 && right.size() > 0) {
-            int x = 0, h = 0;
+            int x = 0, y = 0; // Coordinates for a meaningful point
             if (left.get(0)[0] < right.get(0)[0]) {
                 x = left.get(0)[0];
                 h1 = left.get(0)[1];
-                h = Math.max(h1, h2);
+                y = Math.max(h1, h2);
                 left.remove(0);
             } else if (left.get(0)[0] > right.get(0)[0]) {
                 x = right.get(0)[0];
                 h2 = right.get(0)[1];
-                h = Math.max(h1, h2);
+                y = Math.max(h1, h2);
                 right.remove(0);
             } else {
                 x = left.get(0)[0];
                 h1 =left.get(0)[1];
                 h2 = right.get(0)[1];
-                h = Math.max(h1, h2);
+                y = Math.max(h1, h2);
                 left.remove(0);
                 right.remove(0);
             }
-            if (mergedList.size() == 0 || h != mergedList.get(mergedList.size() - 1)[1]) {
-            	mergedList.add(new int[] { x, h });
+            if (mergedList.size() == 0 || y != mergedList.get(mergedList.size() - 1)[1]) {
+            	mergedList.add(new int[] { x, y });
             }
         }
         mergedList.addAll(left);
         mergedList.addAll(right);
         return mergedList;
+	}
+	
+	public static void main(String[] args){
+		int[][] buildings = {{2, 9, 10}, {3, 7, 15}, {5, 12, 12}, {15, 20, 10}, {19, 24, 8}};
+		Problem218_SkylineProblem skyline = new Problem218_SkylineProblem();
+		List<int[]> results = skyline.getSkylineDQ(buildings);
+		for (int[] result: results) {
+			System.out.println(result[0] + "," + result[1]);
+		}
 	}
 }
 

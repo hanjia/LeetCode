@@ -25,7 +25,7 @@ public class Problem224_BasicCalculator {
 		Stack<String> stack = new Stack<String>();
 		s = s.replaceAll(" ", "");	 
 		char[] array = s.toCharArray();
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();  // To store multi-digits numbers
 		
 		
 		for (int i = 0; i < array.length; i++) {

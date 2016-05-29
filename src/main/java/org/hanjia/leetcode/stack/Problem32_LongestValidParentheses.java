@@ -63,10 +63,34 @@ public class Problem32_LongestValidParentheses {
 		return maxLength;
 	}
 	
+	public int longestValidParenthesesStackSolution2(String s) {
+		if (s.length() == 0)
+	        return 0;
+		int maxLength = 0;
+		Stack<Character> stack = new Stack<Character>(); //To store indexes
+		int start = 0, end = 0;
+		while (end < s.length()) {
+			char c = s.charAt(end);
+			if (c == '(') {
+				stack.push(c);
+			} else {
+				if (!stack.isEmpty() && stack.peek() == '(') {
+					stack.pop();
+					maxLength = Math.max(maxLength, end - start + 1);				
+				} else {
+					start = end + 1;
+				}
+			}
+			end++;
+		}		
+		return maxLength;
+	}
+	
 	public static void main(String[] args){
 		Problem32_LongestValidParentheses validParentheses = new Problem32_LongestValidParentheses();
-		String s = ")()()(())";
+		String s = ")()()((())())(";
 		System.out.println(validParentheses.longestValidParenthesesStackSolution(s));
+		System.out.println(validParentheses.longestValidParenthesesStackSolution2(s));
 	}
 
 }
