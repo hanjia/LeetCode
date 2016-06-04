@@ -42,7 +42,7 @@ public class Problem76_MinimumWindowSubstring {
 
 			targetHash[source.charAt(end)]--;
 			
-			while (sourceNum >= targetNum) {
+			while (sourceNum >= targetNum) { 
 				if (minLength > end - start + 1) {
 					minLength = Math.min(minLength, end - start + 1);
 					minString = source.substring(start, end + 1);

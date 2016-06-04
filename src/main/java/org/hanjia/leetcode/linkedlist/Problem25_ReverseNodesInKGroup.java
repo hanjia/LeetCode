@@ -25,7 +25,7 @@ public class Problem25_ReverseNodesInKGroup {
 	    
 	    ListNode dummy = new ListNode(0);  
 	    dummy.next = head;  
-	    ListNode pre = dummy;  
+	    ListNode prev = dummy;  
 	    ListNode current = head;  
 	    
 	    int count = 0;  
@@ -33,7 +33,7 @@ public class Problem25_ReverseNodesInKGroup {
 	        count++;  
 	        ListNode next = current.next; 	        
 	        if(count == k){  
-	            pre = reverse(pre, next);  
+	            prev = reverse(prev, next);  
 	            count = 0;     
 	        }  
 	        current = next;  
@@ -42,23 +42,39 @@ public class Problem25_ReverseNodesInKGroup {
 	    return dummy.next;  
 	}
 	
-	private static ListNode reverse(ListNode start, ListNode end) {  
+	private static ListNode reverse(ListNode start, ListNode end) {  // For [1, 3] group, start node is 0 and end is 4
 		if (start == null || start.next == null)
 			return start;
 	    
-	    ListNode head = start.next;  
+	    ListNode prev = start.next; // To track the first node in the group
 	    ListNode current = start.next.next; 
+	    ListNode next = null;
 	    
 		while (current != end) {
-			ListNode next = current.next;
+			next = current.next;
 			current.next = start.next;
 			start.next = current;
 			current = next;
 		}
 	    
-	    head.next = end;  
-	    return head;  
+		prev.next = end; // Connect to next group
+	    return prev;  
 	} 
+	
+    public static void main(String[] args){
+    	ListNode l1 = new ListNode(1);
+    	l1.next = new ListNode(2);
+    	l1.next.next = new ListNode(3);
+    	l1.next.next.next = new ListNode(4);
+    	l1.next.next.next.next = new ListNode(5);
+    	l1.next.next.next.next.next = new ListNode(6);
+    	Problem25_ReverseNodesInKGroup reverse = new Problem25_ReverseNodesInKGroup();
+    	ListNode head = reverse.reverseKGroup(l1, 3);
+    	while(head != null) {
+    		System.out.println(head.val);
+    		head = head.next;
+    	}
+    }	
 }
 
 
