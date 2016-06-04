@@ -18,9 +18,9 @@ package org.hanjia.leetcode.string;
  *
  */
 public class Problem76_MinimumWindowSubstring {
-	int initTargetHash(int[] targetHash, String Target) {
+	int initTargetHash(int[] targetHash, String target) {
 		int targetNum = 0;
-		for (char ch : Target.toCharArray()) {
+		for (char ch : target.toCharArray()) {
 			targetNum++;
 			targetHash[ch]++;
 		}
@@ -28,33 +28,41 @@ public class Problem76_MinimumWindowSubstring {
 	}
 
 	public String minWindow(String source, String target) {
-		int result = Integer.MAX_VALUE; // queue the position that matches the char in T
-		String minStr = "";
+		int minLength = Integer.MAX_VALUE; // queue the position that matches the char in T
+		String minString = "";
 
 		int[] targetHash = new int[256];
 		int targetNum = initTargetHash(targetHash, target);
 		int sourceNum = 0;
 		
-		int j = 0;
-		for (int i = 0; i < source.length(); i++) {
-			if (targetHash[source.charAt(i)] > 0)
+		int start = 0;
+		for (int end = 0; end < source.length(); end++) {
+			if (targetHash[source.charAt(end)] > 0)
 				sourceNum++;
 
-			targetHash[source.charAt(i)]--;
+			targetHash[source.charAt(end)]--;
 			
 			while (sourceNum >= targetNum) {
-				if (result > i - j + 1) {
-					result = Math.min(result, i - j + 1);
-					minStr = source.substring(j, i + 1);
+				if (minLength > end - start + 1) {
+					minLength = Math.min(minLength, end - start + 1);
+					minString = source.substring(start, end + 1);
 				}
 				
-				targetHash[source.charAt(j)]++;
-				if (targetHash[source.charAt(j)] > 0)
+				targetHash[source.charAt(start)]++;
+				if (targetHash[source.charAt(start)] > 0)
 					sourceNum--;
-				j++;
+				start++;
 			}
 		}
-		return minStr;
+		return minString;
+	}
+	
+	public static void main(String[] args){
+		String source = "ADOBECODEBANC";
+		String target = "ABC";
+		Problem76_MinimumWindowSubstring window = new Problem76_MinimumWindowSubstring();
+		String result = window.minWindow(source, target);
+		System.out.println(result);
 	}
 	
 }
