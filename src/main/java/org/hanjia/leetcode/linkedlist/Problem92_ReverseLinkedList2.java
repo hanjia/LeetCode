@@ -22,52 +22,55 @@ public class Problem92_ReverseLinkedList2 {
 			return head;
 		}
 	    
-	    ListNode previousNodeForM = null; // track (m-1)th node	   
-	    
-	    // Two pointers: first's next points to mth; second's next points to (n+1)th
-	    ListNode start = new ListNode(0); 
-	    ListNode end = new ListNode(0); 
-	 
+		ListNode dummy = new ListNode(0);
+		dummy.next = head;
+		ListNode pre = dummy;
+		ListNode current = head;
+
 	    // To determine m and n
 	    int i = 0;
-	    ListNode p = head;
-	    while (p != null) {
+	    while (current != null) {
 	    	i++;
 			if (i == m - 1) {
-				previousNodeForM = p;
-			}
-			if (i == m) {
-				start.next = p;
+				pre = current;
 			}
 			if (i == n) {
-				end.next = p.next;
-				p.next = null;
+				break;
 			}
-			p = p.next;
+			current = current.next;
 	    }
 	        
-	    ListNode pre = start.next;
-	    ListNode current = pre.next;
-	    ListNode next = null;
-	    
-	    // connect to the part after n
-	    pre.next = end.next;
-	    
-	    // reverse list [m, n]    
-		while (current != null) {
-			next = current.next;
-			current.next = pre;
-			pre = current;
-			current = next;
-		}
-	 
-	    // connect to the part prior to m
-		if (previousNodeForM != null) {
-			previousNodeForM.next = pre;
-		} else {
-			return pre;
-		}
-		
-	    return head;
+		pre = reverse(pre, current.next);		
+	    return dummy.next;
 	}
+	
+	private ListNode reverse(ListNode start, ListNode end) {  // For [1, 3] , start node is 0 and end node is 4
+	    ListNode pre = start.next; // To track the the last node in the group after reversal
+	    ListNode current = pre.next; 
+	    	    
+		while (current != end) {
+			pre.next = current.next;
+			current.next = start.next;
+			start.next = current;
+			current = pre.next;
+		}
+	    
+	    return pre;  
+	} 
+	
+    public static void main(String[] args){
+    	ListNode l1 = new ListNode(1);
+    	l1.next = new ListNode(2);
+    	l1.next.next = new ListNode(3);
+    	l1.next.next.next = new ListNode(4);
+    	l1.next.next.next.next = new ListNode(5);
+    	l1.next.next.next.next.next = new ListNode(6);
+    	Problem92_ReverseLinkedList2 reverse = new Problem92_ReverseLinkedList2();
+    	ListNode head = reverse.reverseBetween(l1, 2, 4);
+    	while(head != null) {
+    		System.out.println(head.val);
+    		head = head.next;
+    	}
+    }	
+	
 }

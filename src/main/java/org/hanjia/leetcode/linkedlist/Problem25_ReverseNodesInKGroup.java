@@ -19,46 +19,40 @@ package org.hanjia.leetcode.linkedlist;
 public class Problem25_ReverseNodesInKGroup {
 
 	public ListNode reverseKGroup(ListNode head, int k) {  
-	    if(head == null){  
-	        return null;  
-	    } 
-	    
-	    ListNode dummy = new ListNode(0);  
-	    dummy.next = head;  
-	    ListNode prev = dummy;  
-	    ListNode current = head;  
-	    
+		if (head == null) {
+			return null;
+		}
+		
+		ListNode dummy = new ListNode(0);
+		dummy.next = head;
+		ListNode pre = dummy;
+		ListNode current = head;
+	       
 	    int count = 0;  
 	    while(current != null){  
-	        count++;  
-	        ListNode next = current.next; 	        
-	        if(count == k){  
-	            prev = reverse(prev, next);  
-	            count = 0;     
-	        }  
-	        current = next;  
+	        count++;
+			if (count % k == 0) {
+				pre = reverse(pre, current.next);
+				current = pre.next;
+			}
+			current = current.next;		
 	    } 
 	    
 	    return dummy.next;  
 	}
 	
-	private static ListNode reverse(ListNode start, ListNode end) {  // For [1, 3] group, start node is 0 and end is 4
-		if (start == null || start.next == null)
-			return start;
-	    
-	    ListNode prev = start.next; // To track the first node in the group
-	    ListNode current = start.next.next; 
-	    ListNode next = null;
-	    
+	private ListNode reverse(ListNode start, ListNode end) {  // For example, in [1, 3] group, start node is 0 and end node is 4
+	    ListNode pre = start.next; // To track the last node in the group after reversal
+	    ListNode current = pre.next; 
+	    	    
 		while (current != end) {
-			next = current.next;
+			pre.next = current.next;
 			current.next = start.next;
 			start.next = current;
-			current = next;
+			current = pre.next;
 		}
 	    
-		prev.next = end; // Connect to next group
-	    return prev;  
+	    return pre;  
 	} 
 	
     public static void main(String[] args){

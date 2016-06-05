@@ -62,7 +62,7 @@ public class Problem47_Permutation2 {
                 continue;
             }    
             
-            if((i != 0 && nums[i] == nums[i - 1] && !visited[i - 1])) {
+            if((i != 0 && nums[i] == nums[i - 1] && !visited[i - 1])) { // For case 1,2,2,3, i reaches the second 2. To avoid generating 1,2,2 again 
             	continue;
             }
             

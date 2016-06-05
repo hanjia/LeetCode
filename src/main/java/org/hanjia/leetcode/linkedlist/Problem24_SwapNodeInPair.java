@@ -15,23 +15,21 @@ public class Problem24_SwapNodeInPair {
 
 		ListNode dummy = new ListNode(0);
 		dummy.next = head;
-		ListNode current = dummy;
-
-		while (current.next != null && current.next.next != null) {
-			ListNode pre = current; // To track previous node
-			current = current.next;
+		ListNode pre = dummy;
+		ListNode current = head;
+		
+		while (current != null && current.next != null) {
 			pre.next = current.next;
-
-			ListNode next = current.next.next; // To track next node
-			current.next.next = current;
-			current.next = next;
+			current.next = current.next.next;
+			pre.next.next = current;
+			pre = current;
+			current = current.next;			
 		}
 
 		return dummy.next;
 	}
 	
 	public static void main(String[] args){
-
 		ListNode node2 = new ListNode(1);
 		node2.next = new ListNode(2);
 		node2.next.next = new ListNode(3);
@@ -45,7 +43,7 @@ public class Problem24_SwapNodeInPair {
 		
 		ListNode result = swapPairs(node2);
 		while(result != null){
-			System.out.println("Result: " + result.val);
+			System.out.println(result.val);
 			result = result.next;
 		}
 
