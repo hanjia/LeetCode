@@ -44,7 +44,56 @@ public class Problem25_ReverseNodesInKGroup {
 	private ListNode reverse(ListNode start, ListNode end) {  // For example, in [1, 3] group, start node is 0 and end node is 4
 	    ListNode pre = start.next; // To track the last node in the group after reversal
 	    ListNode current = pre.next; 
-	    	    
+	    /**
+	     * start -> 1 -> 2 -> 3 -> end
+	     *         pre  cur
+	     *         
+	     * First round:        
+	     *           /--->---\  
+	     * start -> 1    2 -> 3 -> end
+	     *         pre  cur	
+	     *             
+	     * 	         /--->--\  
+	     * start -> 1 <- 2   3 -> end
+	     *         pre  cur
+	     *         	            
+	     * 	         /--->--\  
+	     * start    1 <- 2   3 -> end
+	     *    \---->----/  
+	     *         pre  cur	  
+	     *         	     
+	     * 	        /--->---\  
+	     * start    1 <- 2   3 -> end
+	     *    \---->----/
+	     *         pre  	cur	 
+	     * 
+	     * Second round:        
+	     * 	        /--->---\  
+	     * start    1 <- 2   3 -> end
+	     *    \---->----/
+	     *         pre  	cur	 
+	     *                    
+	     * 	         /------>------\  
+	     * start    1 <- 2   3 -> end
+	     *    \---->----/
+	     *         pre  	cur	 
+	     *         	            
+	     * 	         /------->------\  
+	     * start    1 <- 2 <- 3    end
+	     *    \---->----/
+	     *         pre  	cur	 	 
+	     *         	     
+	     * 	         /------->------\  
+	     * start    1 <- 2 <- 3    end
+	     *    \------->------/
+	     *         pre  	cur	                     
+	     *         
+	     * 	         /------->------\  
+	     * start    1 <- 2 <- 3    end
+	     *    \------->------/
+	     *         pre  		   cur      
+	     *         
+	     */
 		while (current != end) {
 			pre.next = current.next;
 			current.next = start.next;
