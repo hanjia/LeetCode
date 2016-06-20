@@ -43,4 +43,40 @@ public class Problem144_BinaryTreePreorderTraversal {
         }
         return result;
     }
+    
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();     
+        if(root == null)
+            return result;
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        while (true) {
+        	while (root != null) {
+        		result.add(root.val);
+        		stack.push(root);
+        		root = root.left;
+        	}
+        	
+        	if (stack.isEmpty())
+        		break;
+        	
+        	root = stack.pop();
+        	root = root.right;
+        }
+        
+        return result;
+    }
+    
+    public static void main(String[] args) {
+    	TreeNode root = new TreeNode(1);
+    	root.left = new TreeNode(2);
+    	root.right = new TreeNode(3);
+    	root.left.left = new TreeNode(4);
+    	root.left.right = new TreeNode(5);
+    	root.right.left = new TreeNode(6);
+    	root.right.right = new TreeNode(7);  
+    	
+    	Problem144_BinaryTreePreorderTraversal preorder = new Problem144_BinaryTreePreorderTraversal();
+    	System.out.println(preorder.preorderTraversal(root));
+    	System.out.println(preorder.preorderTraversal2(root));
+    }
 }

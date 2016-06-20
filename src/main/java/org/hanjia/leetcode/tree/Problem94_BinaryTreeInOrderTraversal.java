@@ -26,21 +26,48 @@ import java.util.Stack;
 public class Problem94_BinaryTreeInOrderTraversal {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<Integer>();
+        if (root == null) {
+        	return result;
+        }
         Stack<TreeNode> stack = new Stack<TreeNode>();
         TreeNode current = root;
         
-        while(!stack.isEmpty() || current != null){
-        	while(current != null){
-        		stack.push(current);
-        		current = current.left;
-        	}        	
-        	current = stack.pop();
-        	result.add(current.val);
-        	current = current.right;
-        }
+		while (!stack.isEmpty() || current != null) {
+			while (current != null) {
+				stack.push(current);
+				current = current.left;
+			}
+			current = stack.pop();
+			result.add(current.val);
+			current = current.right;
+		}
         
         return result;
     }
+    
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> result = new ArrayList<Integer>();
+        if (root == null) {
+        	return result;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        while (true) {
+        	while (root != null) {
+        		stack.push(root);
+        		root = root.left;
+        	}
+        	
+        	if (stack.isEmpty())
+        		break;
+        	
+        	root = stack.pop();
+        	result.add(root.val);
+        	root = root.right;
+        }
+        return result;        
+    }
+
+    	
     
     public static void main(String[] args){
     	TreeNode root = new TreeNode(1);
@@ -52,5 +79,7 @@ public class Problem94_BinaryTreeInOrderTraversal {
     	root.right.right = new TreeNode(7);  
     	Problem94_BinaryTreeInOrderTraversal inorder = new Problem94_BinaryTreeInOrderTraversal();
     	System.out.println(inorder.inorderTraversal(root));
+    	System.out.println(inorder.inorderTraversal2(root));
+
     }
 }
