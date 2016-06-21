@@ -1,6 +1,6 @@
 # LeetCode
 
-Han's study notes for LeetCode problems
+Check here for notes:
 
 [Wiki pages]
 (https://github.com/hanjia/LeetCode/wiki)
