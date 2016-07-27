@@ -10,7 +10,7 @@ package org.hanjia.leetcode.tree;
  */
 public class Problem208_ImplementTrie {
 
-    private TrieNode root;
+    private TrieNode root = new TrieNode();
 
     // Inserts a word into the trie.
     public void insert(String word) {
@@ -28,6 +28,19 @@ public class Problem208_ImplementTrie {
     public boolean startsWith(String prefix) {
         TrieNode node = root.find(prefix, 0);
         return (node != null);
+    }
+    
+    public static void main(String[] args) {
+    	Problem208_ImplementTrie trie = new Problem208_ImplementTrie();
+    	trie.insert("hello");
+    	trie.insert("hazel");
+    	trie.insert("hub");
+    	trie.insert("hostile");
+    	trie.insert("high");
+    	System.out.println(trie.search("hub"));
+    	System.out.println(trie.search("hot"));
+    	System.out.println(trie.startsWith("ho"));
+    	System.out.println(trie.startsWith("wo"));
     }
 }
 
