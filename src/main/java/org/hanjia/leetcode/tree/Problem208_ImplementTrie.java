@@ -44,12 +44,18 @@ public class Problem208_ImplementTrie {
     }
 }
 
+/**
+ * 
+ * 
+ * @author hajia
+ *
+ */
 class TrieNode {
     private TrieNode[] children;
     public boolean hasWord;
     
     public TrieNode() {
-        children = new TrieNode[26];
+        children = new TrieNode[26]; // Each node has 26 children
         hasWord = false;
     }
     
@@ -63,7 +69,7 @@ class TrieNode {
         if (children[position] == null) {
             children[position] = new TrieNode();
         }
-        children[position].insert(word, index + 1);
+        children[position].insert(word, index + 1); // Recursion
     }
     
     public TrieNode find(String word, int index) {
@@ -75,6 +81,6 @@ class TrieNode {
         if (children[position] == null) {
             return null;
         }
-        return children[position].find(word, index + 1);
+        return children[position].find(word, index + 1); // Recursion
     }
 }
