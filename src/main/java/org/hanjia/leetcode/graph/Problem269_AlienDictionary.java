@@ -33,15 +33,16 @@ import java.util.Queue;
 public class Problem269_AlienDictionary {
 	public String alienOrder(String[] words) {
         Node[] node = new Node[26];
-        boolean[] happen = new boolean[26];
+        boolean[] visited = new boolean[26];
         for (int i = 0; i < 26; i++) {
             node[i] = new Node();
         }
+        
         //Build the Graph
         for (int i = 0; i < words.length; i++) {
             int startPoint = 0, endPoint = 0;
             for (int j = 0; j < words[i].length(); j++) {
-                happen[charToInt(words[i].charAt(j))] = true;
+            	visited[charToInt(words[i].charAt(j))] = true;
             }
             if (i != words.length - 1) {
                 for (int j = 0; j < Math.min(words[i].length(), words[i + 1].length()); j++) {
@@ -57,31 +58,34 @@ public class Problem269_AlienDictionary {
                 node[endPoint].degree++;
             }
         }
+        
         //Topological Sort
         Queue<Integer> queue = new LinkedList<Integer>();
-        String ans = "";
+        String answer = "";
         for (int i = 0; i < 26; i++) {
-            if (node[i].degree == 0 && happen[i]) {
+            if (node[i].degree == 0 && visited[i]) {
                 queue.offer(i);
-                ans = ans + intToChar(i);
+                answer = answer + intToChar(i);
             } 
         }
+        
         while (!queue.isEmpty()) {
             int now = queue.poll();
             for (int i : node[now].neighbors) {
                 node[i].degree--;
                 if (node[i].degree == 0) {
                     queue.offer(i);
-                    ans = ans + intToChar(i);
+                    answer = answer + intToChar(i);
                 }
             }
         }
+        
         for (int i = 0; i < 26; i++) {
             if (node[i].degree != 0) {
                 return "";
             }
         }
-        return ans;
+        return answer;
     }
 	
     public char intToChar(int i) {
@@ -91,6 +95,8 @@ public class Problem269_AlienDictionary {
     public int charToInt(char ch) {
         return ch - 'a';
     }
+    
+    // TODO: add tests
     
 }
 

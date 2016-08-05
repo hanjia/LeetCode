@@ -31,6 +31,7 @@ public class Problem257_BinaryTreePaths {
         return result;
     }
     
+	// pre-order traversal
 	private void helper(TreeNode root, String path, List<String> result) {
 		if (root == null) {
 			return;

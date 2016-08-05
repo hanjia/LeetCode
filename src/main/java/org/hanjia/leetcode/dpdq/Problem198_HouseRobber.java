@@ -51,4 +51,6 @@ public class Problem198_HouseRobber {
 
 		return amount[nums.length - 1];
 	}
+	
+	// TODO: add tests
 }

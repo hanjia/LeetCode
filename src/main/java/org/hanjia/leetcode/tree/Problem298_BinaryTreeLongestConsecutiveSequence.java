@@ -32,7 +32,7 @@ public class Problem298_BinaryTreeLongestConsecutiveSequence {
         return dfs(root, null, 0);
     }
     
-    //Pre-order traversal
+    // pre-order traversal
 	private int dfs(TreeNode current, TreeNode parent, int length) {
 		if (current == null)
 			return length;

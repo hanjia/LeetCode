@@ -13,8 +13,8 @@ import java.util.Set;
  * find the length of shortest transformation sequence from beginWord to endWord, such that:
  *  - Only one letter can be changed at a time
  *  - Each intermediate word must exist in the word list
- * For example,
  * 
+ * For example,
  * Given:
  * beginWord = "hit"
  * endWord = "cog"
@@ -100,4 +100,6 @@ public class Problem127_WordLadder {
     	int length = wordLadder.ladderLength(beginWord, endWord, wordList);
     	System.out.println(length);
     }
+    
+    // TODO: revisit
 }
