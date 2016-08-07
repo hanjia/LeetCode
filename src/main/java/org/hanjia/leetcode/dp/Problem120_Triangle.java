@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.dpdq;
+package org.hanjia.leetcode.dp;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -38,8 +38,8 @@ public class Problem317_ShortestDistanceFromAllBuildings {
         int[][] reach = new int[rows][columns];
         int[][] distance = new int[rows][columns];
         int numBuildings = 0;
-        Queue<Integer> queue = new LinkedList<Integer>();
-         
+        
+        Queue<Integer> queue = new LinkedList<Integer>();      
         // Find the minimum distance from all buildings
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -104,5 +104,9 @@ public class Problem317_ShortestDistanceFromAllBuildings {
 		queue.offer(row * columns + col);
 	}
 	
-	// TODO: add tests
+	public static void main(String[] args) {
+		int[][] grid = {{1,0,2,0},{0,0,0,0}, {0,0,0,1}};
+		Problem317_ShortestDistanceFromAllBuildings distance = new Problem317_ShortestDistanceFromAllBuildings();
+		System.out.println(distance.shortestDistance(grid));
+	}
 }

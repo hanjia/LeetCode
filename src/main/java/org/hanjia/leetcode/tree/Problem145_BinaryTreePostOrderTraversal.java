@@ -39,73 +39,33 @@ public class Problem145_BinaryTreePostOrderTraversal {
 	        }
 	        previous = current;
 	    }
-
 	    return result;
 	}
 	
-	// TODO Fix this method
-	public List<Integer> postorderTraversal2(TreeNode root) {
+	public List<Integer> postorderTraversalIterative(TreeNode root){
 	    List<Integer> result = new ArrayList<Integer>();
-		if (root == null)
+		if (root == null) {
 			return result;
+		}
+		
 		Stack<TreeNode> stack = new Stack<TreeNode>();
-		while (true) {
+		TreeNode previous = null;
+		while (root != null || !stack.isEmpty()) {
 			if (root != null) {
 				stack.push(root);
 				root = root.left;
 			} else {
-				if (stack.isEmpty()) {
-					break;
-				}
-				if (stack.peek().right == null) {
-					root = stack.pop();
-					result.add(root.val);
-	
-					// If the current node is the same with right child of the top node in stack,
-					// that means we are done with both left and right subtree and then we should go to root
-					if (root == stack.peek().right) {
-						root = stack.pop();
-						result.add(root.val);
-					}
-				}
-	
-				if (!stack.isEmpty()) {
-					root = stack.peek().right;
+				TreeNode current = stack.peek();
+				if (current.right != null && current.right != previous) {
+					root = current.right;
 				} else {
-					root = null;
+					current = stack.pop();
+					result.add(current.val);
+					previous = current;
 				}
 			}
 		}
 		return result;
-	} 
-	
-	public static void postorderTraversalIterative(TreeNode root){
-		if(root == null) return;
-		Stack<TreeNode> s = new Stack<TreeNode>();
-		while(true){
-			if(root != null){ //To go to the far left node and store all the previous nodes
-				s.push(root);
-				root = root.left;
-			}else{
-				if(s.isEmpty())	break;
-				else{
-					if(s.peek().right == null){
-						root = s.pop();
-						System.out.print(root.val + ",");
-						if(root == s.peek().right){
-							root = s.pop();
-							System.out.print(root.val + ",");
-						}
-					}
-				}	
-				
-				if (!s.isEmpty()) {
-					root = s.peek().right;
-				} else {
-					root = null;
-				}			
-			}
-		}
 	}
 	
     public static void main(String[] args) {
@@ -119,6 +79,6 @@ public class Problem145_BinaryTreePostOrderTraversal {
     	
     	Problem145_BinaryTreePostOrderTraversal postorder = new Problem145_BinaryTreePostOrderTraversal();
     	System.out.println(postorder.postorderTraversal(root));
-    	//System.out.println(postorder.postorderTraversal2(root));
+    	System.out.println(postorder.postorderTraversalIterative(root));
     }
 }

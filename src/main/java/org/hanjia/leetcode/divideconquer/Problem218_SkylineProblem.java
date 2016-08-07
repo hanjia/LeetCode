@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.dpdq;
+package org.hanjia.leetcode.divideconquer;
 
 import java.util.ArrayList;
 import java.util.Collections;

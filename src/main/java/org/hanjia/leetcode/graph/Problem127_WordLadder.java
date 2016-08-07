@@ -100,6 +100,4 @@ public class Problem127_WordLadder {
     	int length = wordLadder.ladderLength(beginWord, endWord, wordList);
     	System.out.println(length);
     }
-    
-    // TODO: revisit
 }

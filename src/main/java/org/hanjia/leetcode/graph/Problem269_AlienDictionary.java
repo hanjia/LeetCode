@@ -96,7 +96,11 @@ public class Problem269_AlienDictionary {
         return ch - 'a';
     }
     
-    // TODO: add tests
+    public static void main(String[] args) {
+    	String[] words = {"wrt", "wrf", "er", "ett", "rftt"};
+    	Problem269_AlienDictionary dict = new Problem269_AlienDictionary();
+    	System.out.println(dict.alienOrder(words));
+    }
     
 }
 

@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.dpdq;
+package org.hanjia.leetcode.dp;
 
 
 /**

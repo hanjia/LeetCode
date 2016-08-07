@@ -72,13 +72,21 @@ public class Problem349_DesignTicTacToe {
 	}
 	
 	public int move(int row, int col, int player) {
-		int add = player == 1 ? 1 : -1;
+		int add = (player == 1) ? 1 : -1;
 		rows[row] += add;
 		cols[col] += add;
-		diagnol += (row == col ? add : 0);
-		reverseDiagnol += (row == n - col - 1 ? add : 0);
+		diagnol += ((row == col) ? add : 0);
+		reverseDiagnol += ((row == n - col - 1) ? add : 0);
 		return (Math.abs(rows[row]) == n || Math.abs(cols[col]) == n || Math.abs(diagnol) == n || Math.abs(reverseDiagnol) == n) ? player : 0;
 	}
 	
-	// TODO: add tests
+	public static void main(String[] args) {
+		Problem349_DesignTicTacToe ticTacToe = new Problem349_DesignTicTacToe(3);
+		System.out.println(ticTacToe.move(1, 1, 1));
+		System.out.println(ticTacToe.move(1, 2, 2));
+		System.out.println(ticTacToe.move(2, 1, 1));
+		System.out.println(ticTacToe.move(2, 2, 2));
+		System.out.println(ticTacToe.move(0, 2, 2));
+	}
+	
 }
