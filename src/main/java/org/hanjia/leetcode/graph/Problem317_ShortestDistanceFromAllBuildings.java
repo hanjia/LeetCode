@@ -23,8 +23,7 @@ import java.util.Queue;
  * @author hajia
  *
  */
-public class Problem317_ShortestDistanceFromAllBuildings {
-	
+public class Problem317_ShortestDistanceFromAllBuildings {	
 	private final int[][] dir = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 	
 	// BFS solution
@@ -51,7 +50,7 @@ public class Problem317_ShortestDistanceFromAllBuildings {
             }
         }
          
-        // Check the min distance reachable by all buildings
+        // Check whether the min distance is reachable by all buildings
         int minDistance = Integer.MAX_VALUE;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -69,7 +68,6 @@ public class Problem317_ShortestDistanceFromAllBuildings {
     
 	private void shortestDistanceHelper(int row, int col, int dist, int[][] grid, int[][] reach, int[][] minDistance, boolean[][] visited, Queue<Integer> queue) {
 		fill(row, col, dist, grid, reach, minDistance, visited, queue);
-
 		int columns = grid[0].length;
 		while (!queue.isEmpty()) {
 			dist++;

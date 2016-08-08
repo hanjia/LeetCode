@@ -32,48 +32,52 @@ import java.util.Queue;
  */
 public class Problem269_AlienDictionary {
 	public String alienOrder(String[] words) {
-        Node[] node = new Node[26];
+        Vertex[] vertices = new Vertex[26];
         boolean[] visited = new boolean[26];
         for (int i = 0; i < 26; i++) {
-            node[i] = new Node();
+        	vertices[i] = new Vertex();
         }
         
         //Build the Graph
         for (int i = 0; i < words.length; i++) {
-            int startPoint = 0, endPoint = 0;
+            int start = 0;
+            int end = 0;
             for (int j = 0; j < words[i].length(); j++) {
             	visited[charToInt(words[i].charAt(j))] = true;
             }
+            
             if (i != words.length - 1) {
-                for (int j = 0; j < Math.min(words[i].length(), words[i + 1].length()); j++) {
+            	int minLength = Math.min(words[i].length(), words[i + 1].length());
+                for (int j = 0; j < minLength; j++) {
                     if (words[i].charAt(j) != words[i + 1].charAt(j)) {
-                        startPoint = charToInt(words[i].charAt(j));
-                        endPoint = charToInt(words[i + 1].charAt(j));
+                        start = charToInt(words[i].charAt(j));
+                        end = charToInt(words[i + 1].charAt(j));
                         break;
                     }
                 }
             }
-            if (startPoint != endPoint) {
-                node[startPoint].neighbors.add(endPoint);
-                node[endPoint].degree++;
+            
+            if (start != end) {
+            	vertices[start].neighbors.add(end);
+            	vertices[end].inDegree++;
             }
         }
         
-        //Topological Sort
+        //Topological Sort via BFS
         Queue<Integer> queue = new LinkedList<Integer>();
         String answer = "";
+        
         for (int i = 0; i < 26; i++) {
-            if (node[i].degree == 0 && visited[i]) {
+            if (vertices[i].inDegree == 0 && visited[i]) { // To identify the first vertice
                 queue.offer(i);
                 answer = answer + intToChar(i);
             } 
         }
         
         while (!queue.isEmpty()) {
-            int now = queue.poll();
-            for (int i : node[now].neighbors) {
-                node[i].degree--;
-                if (node[i].degree == 0) {
+            int current = queue.poll();
+            for (int i : vertices[current].neighbors) {
+                if (--vertices[i].inDegree == 0) { // To make sure each node will be visited once
                     queue.offer(i);
                     answer = answer + intToChar(i);
                 }
@@ -81,7 +85,7 @@ public class Problem269_AlienDictionary {
         }
         
         for (int i = 0; i < 26; i++) {
-            if (node[i].degree != 0) {
+            if (vertices[i].inDegree != 0) {
                 return "";
             }
         }
@@ -97,18 +101,21 @@ public class Problem269_AlienDictionary {
     }
     
     public static void main(String[] args) {
-    	String[] words = {"wrt", "wrf", "er", "ett", "rftt"};
+    	String[] words1 = {"wrt", "wrf", "er", "ett", "rftt"};
+    	String[] words2 = {"wrt", "wrf", "er", "ett", "rftt"};
     	Problem269_AlienDictionary dict = new Problem269_AlienDictionary();
-    	System.out.println(dict.alienOrder(words));
+    	System.out.println(dict.alienOrder(words1));
+    	System.out.println(dict.alienOrder(words2));
     }
     
 }
 
-class Node {
-    public int degree;
+class Vertex {
+    public int inDegree;
     public List<Integer> neighbors;
-    public Node() {
-        degree = 0;
+    
+    public Vertex() {
+    	inDegree = 0;
         neighbors = new ArrayList<Integer>();
     }
 }
