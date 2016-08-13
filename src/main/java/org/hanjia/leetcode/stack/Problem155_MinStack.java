@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.graph;
+package org.hanjia.leetcode.stack;
 
 import java.util.Stack;
 
