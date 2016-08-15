@@ -68,24 +68,25 @@ public class Problem269_AlienDictionary {
         String answer = "";
         
         for (int i = 0; i < 26; i++) {
-            if (vertices[i].inDegree == 0 && visited[i]) { // To identify the first vertice
+            if (vertices[i].inDegree == 0 && visited[i]) { // To identify the first vertex
                 queue.offer(i);
                 answer = answer + intToChar(i);
             } 
         }
-        
+
         while (!queue.isEmpty()) {
             int current = queue.poll();
-            for (int i : vertices[current].neighbors) {
-                if (--vertices[i].inDegree == 0) { // To make sure each node will be visited once
-                    queue.offer(i);
-                    answer = answer + intToChar(i);
+            for (int next : vertices[current].neighbors) {
+            	vertices[next].inDegree--;
+                if (vertices[next].inDegree == 0) { // To make sure each node will be visited once
+                    queue.offer(next);
+                    answer = answer + intToChar(next);
                 }
             }
         }
         
         for (int i = 0; i < 26; i++) {
-            if (vertices[i].inDegree != 0) {
+            if (vertices[i].inDegree != 0) { // To check whether a circle exists
                 return "";
             }
         }

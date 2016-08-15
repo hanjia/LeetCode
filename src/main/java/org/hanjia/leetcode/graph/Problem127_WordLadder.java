@@ -27,7 +27,7 @@ import java.util.Set;
  */
 public class Problem127_WordLadder {
 	
-	// Breadth First Search in a graph
+	// Breadth First Search
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
     	if (wordList == null || wordList.size() < 1)
     		return 0;
