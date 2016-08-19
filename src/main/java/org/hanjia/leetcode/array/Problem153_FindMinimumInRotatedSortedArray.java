@@ -21,11 +21,12 @@ public class Problem153_FindMinimumInRotatedSortedArray {
 		int end = nums.length - 1;
 
 		while (start <= end) {
-			if (nums[start] <= nums[end])
+			if (nums[start] <= nums[end]) { 
+				// we have the correct order now so the start should point to the smallest element
 				return nums[start];
-
+			}
+			
 			int mid = (start + end) / 2;
-
 			if (nums[mid] >= nums[end]) {
 				start = mid + 1;
 			} else {
@@ -39,10 +40,11 @@ public class Problem153_FindMinimumInRotatedSortedArray {
 		int[] nums1 = {4, 5, 6, 7, 0, 1, 2};
 		int[] nums2 = {6, 7, 0, 1, 2, 4, 5};
 		int[] nums3 = {0, 1, 2};
+		int[] nums4 = {2};
 		Problem153_FindMinimumInRotatedSortedArray min = new Problem153_FindMinimumInRotatedSortedArray();
 		System.out.println(min.findMin(nums1));
 		System.out.println(min.findMin(nums2));
 		System.out.println(min.findMin(nums3));
-
+		System.out.println(min.findMin(nums4));
 	}
 }

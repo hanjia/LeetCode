@@ -102,6 +102,7 @@ public class Problem317_ShortestDistanceFromAllBuildings {
 		queue.offer(row * columns + col);
 	}
 	
+	// TODO revisit
 	public static void main(String[] args) {
 		int[][] grid = {{1,0,2,0},{0,0,0,0}, {0,0,0,1}};
 		Problem317_ShortestDistanceFromAllBuildings distance = new Problem317_ShortestDistanceFromAllBuildings();

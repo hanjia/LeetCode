@@ -74,6 +74,7 @@ public class Problem139_WordBreak {
 		dict.add("leet");
 		dict.add("code");
 		dict.add("lint");
+		dict.add("hello");
 		
 		Problem139_WordBreak wordBreak = new Problem139_WordBreak();
 		System.out.println(wordBreak.wordBreakRecursive(s, dict));

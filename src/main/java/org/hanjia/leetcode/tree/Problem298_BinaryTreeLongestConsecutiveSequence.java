@@ -44,4 +44,8 @@ public class Problem298_BinaryTreeLongestConsecutiveSequence {
 		int maxLength = Math.max(leftLength, rightLength);
 		return Math.max(length, maxLength);
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 }

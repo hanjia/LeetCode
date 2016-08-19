@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.array;
+package org.hanjia.leetcode.matrix;
 
 /**
  * 
@@ -27,7 +27,7 @@ public class Problem79_WordSearch {
 	 
 	    for(int i = 0; i < rows; i++){
 	        for(int j = 0; j < columns; j++){
-	           if(backtrack(board, word, i, j, 0)){
+	           if(dfs(board, word, i, j, 0)){
 	               return true;
 	           }
 	        }
@@ -35,7 +35,7 @@ public class Problem79_WordSearch {
 	    return false;
 	}
 	 
-	public boolean backtrack(char[][] board, String word, int i, int j, int wordIndex) {
+	public boolean dfs(char[][] board, String word, int i, int j, int wordIndex) {
 		if (i < 0 || j < 0 || i >= board.length || j >= board[0].length) {
 			return false;
 		}
@@ -46,10 +46,10 @@ public class Problem79_WordSearch {
 			
 			if (wordIndex == word.length() - 1) {
 				return true;
-			} else if (backtrack(board, word, i - 1, j, wordIndex + 1)
-					|| backtrack(board, word, i + 1, j, wordIndex + 1)
-					|| backtrack(board, word, i, j - 1, wordIndex + 1)
-					|| backtrack(board, word, i, j + 1, wordIndex + 1)) {
+			} else if (dfs(board, word, i - 1, j, wordIndex + 1)
+					|| dfs(board, word, i + 1, j, wordIndex + 1)
+					|| dfs(board, word, i, j - 1, wordIndex + 1)
+					|| dfs(board, word, i, j + 1, wordIndex + 1)) {
 				return true;
 			}
 			board[i][j] = temp;

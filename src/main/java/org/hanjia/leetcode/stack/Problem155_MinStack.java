@@ -29,20 +29,21 @@ public class Problem155_MinStack {
     private Stack<Integer> stack;
     private Stack<Integer> minStack;
 
+    // Two stacks solution
     public Problem155_MinStack() {
         stack = new Stack<Integer>();
         minStack = new Stack<Integer>();
     }
 
-    public void push(int x) {  
+    public void push(int value) {  
         // store current min value into minStack  
-        if (minStack.isEmpty() || x <= minStack.peek())  
-            minStack.push(x);  
-        stack.push(x);  
+        if (minStack.isEmpty() || value <= minStack.peek())  
+            minStack.push(value);  
+        stack.push(value);  
     }  
   
     public void pop() {  
-        // use equals to compare the value of two object, if equal, pop both of them  
+        // compare the value of two objects , if equal, pop both of them  
         if (stack.peek().equals(minStack.peek()))  
             minStack.pop();  
         stack.pop();  
@@ -57,6 +58,14 @@ public class Problem155_MinStack {
     } 
     
     public static void main(String[] args) {
-    	
+    	Problem155_MinStack minStack = new Problem155_MinStack();
+    	minStack.push(6);
+    	minStack.push(5);
+    	minStack.push(3);
+    	minStack.push(8);
+    	System.out.println(minStack.getMin());
+    	minStack.pop();
+    	minStack.pop();
+    	System.out.println(minStack.getMin());
     }
 }
