@@ -1,4 +1,4 @@
-package org.hanjia.leetcode.matrix;
+package org.hanjia.leetcode.graph;
 
 /**
  * 
