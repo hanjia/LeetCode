@@ -1,4 +1,4 @@
-
+package org.hanjia.leetcode;
 
 public class Problem191_NumberOf1Bits {
 	public int hammingWeight(int n) {

@@ -9,7 +9,6 @@ package org.hanjia.leetcode.dp;
  * b) Delete a character
  * c) Replace a character
  * 
- * 
  * @author hanjia
  *
  */
@@ -28,13 +27,16 @@ public class Problem72_EditDistance {
     	}
     	
     	int[][] table = new int[word2.length() + 1][word1.length() + 1];
+    	
     	// To insert base cases
     	for(int i = 0; i <= word1.length(); i++){
     		table[0][i] = i;
     	}
+    	
     	for(int j = 0; j <= word2.length(); j++){
     		table[j][0] = j;
     	}
+    	
     	// To fill up the entire table
     	for(int i = 1; i <= word1.length(); i++){
     		for(int j = 1; j <= word2.length(); j++){
@@ -48,10 +50,36 @@ public class Problem72_EditDistance {
     }
 	
 	public static void main(String[] args){
-		String word1 = "POLYNOMIAL";
-		String word2 = "EXPONENTIAL";
+		String word1 = "staywithme";
+		String word2 = "dancewithme";
 		// The answer should be 6
 		Problem72_EditDistance editDistance = new Problem72_EditDistance();
 		System.out.println(editDistance.minDistance(word1, word2));
+		System.out.println(Problem72_EditDistance.editDistance(word1, word2, word1.length(), word2.length()));
+	}
+	
+	public static int editDistance(String word1, String word2, int i, int j) {
+		if (i == 0)
+			return j;
+
+		if (j == 0)
+			return i;
+
+		if (word1.charAt(i-1) == word2.charAt(j-1))
+			return editDistance(word1, word2, i-1, j-1);
+
+		return 1 + min(editDistance(word1, word2, i, j - 1), // Insert
+				editDistance(word1, word2, i - 1, j), // Remove
+				editDistance(word1, word2, i - 1, j - 1) // Replace
+		);
+	}
+	
+	public static int min(int x, int y, int z) {
+		if (x <= y && x <= z)
+			return x;
+		if (y <= x && y <= z)
+			return y;
+		else
+			return z;
 	}
 }

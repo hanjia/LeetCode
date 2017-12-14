@@ -1,4 +1,4 @@
-
+package org.hanjia.leetcode;
 
 public class Problem190_ReverseBits {
 	public int reverseBits(int n) {
