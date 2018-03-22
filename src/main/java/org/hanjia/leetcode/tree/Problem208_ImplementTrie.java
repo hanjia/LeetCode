@@ -42,45 +42,45 @@ public class Problem208_ImplementTrie {
     	System.out.println(trie.startsWith("ho"));
     	System.out.println(trie.startsWith("wo"));
     }
+    
+    /**
+     * 
+     * @author hajia
+     *
+     */
+    class TrieNode {
+        private TrieNode[] children;
+        public boolean hasWord;
+        
+        public TrieNode() {
+            children = new TrieNode[26]; // Each node has 26 children
+            hasWord = false;
+        }
+        
+        public void insert(String word, int index) {
+            if (index == word.length()) {
+                this.hasWord = true;
+                return;
+            }
+            
+            int position = word.charAt(index) - 'a';
+            if (children[position] == null) {
+                children[position] = new TrieNode();
+            }
+            children[position].insert(word, index + 1); // Recursion
+        }
+        
+        public TrieNode find(String word, int index) {
+            if (index == word.length()) {
+                return this;
+            }
+            
+            int position = word.charAt(index) - 'a';
+            if (children[position] == null) {
+                return null;
+            }
+            return children[position].find(word, index + 1); // Recursion
+        }
+    }
 }
 
-/**
- * 
- * 
- * @author hajia
- *
- */
-class TrieNode {
-    private TrieNode[] children;
-    public boolean hasWord;
-    
-    public TrieNode() {
-        children = new TrieNode[26]; // Each node has 26 children
-        hasWord = false;
-    }
-    
-    public void insert(String word, int index) {
-        if (index == word.length()) {
-            this.hasWord = true;
-            return;
-        }
-        
-        int position = word.charAt(index) - 'a';
-        if (children[position] == null) {
-            children[position] = new TrieNode();
-        }
-        children[position].insert(word, index + 1); // Recursion
-    }
-    
-    public TrieNode find(String word, int index) {
-        if (index == word.length()) {
-            return this;
-        }
-        
-        int position = word.charAt(index) - 'a';
-        if (children[position] == null) {
-            return null;
-        }
-        return children[position].find(word, index + 1); // Recursion
-    }
-}
