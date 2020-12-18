@@ -1,4 +1,4 @@
-package org.hanjia.leetcode;
+package org.hanjia.leetcode.bitoperation;
 
 public class Problem190_ReverseBits {
 	public int reverseBits(int n) {
@@ -19,5 +19,4 @@ public class Problem190_ReverseBits {
 	 
 		return n;
 	}
-	// TODO: add tests
 }

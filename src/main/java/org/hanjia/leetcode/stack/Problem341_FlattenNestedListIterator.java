@@ -26,34 +26,36 @@ import java.util.Stack;
 public class Problem341_FlattenNestedListIterator {
 
 	public class NestedIterator implements Iterator<Integer> {
-		public Stack<NestedInteger> s = new Stack<NestedInteger>();
-	    public NestedIterator(List<NestedInteger> nestedList) {
-	        for (NestedInteger integer: nestedList) {
-	            s.push(integer);
-	        }
-	    }
+		Stack<NestedInteger> stack = new Stack<>();
 
-	    public Integer next() {
-	        NestedInteger t = s.pop();
-	        return t.getInteger();
-	    }
+		public NestedIterator(List<NestedInteger> nestedList) {
+			if (nestedList == null || nestedList.size() == 0)
+				return;
 
-	    public boolean hasNext() {
-	        while (!s.empty()) {
-	            NestedInteger t = s.pop(); 
-	            if (t.isInteger()) 
-	            	return true;
-	            
-	            s.pop();
-	            for (NestedInteger integer: t.getList()) {
-	                s.push(integer);
-	            }
-	        }
-	        return false;
-	    }
+			for (int i = nestedList.size() - 1; i >= 0; i--) {
+				stack.push(nestedList.get(i));
+			}
+		}
 
-		public void remove() {
-			
+		@Override
+		public Integer next() {
+			return stack.pop().getInteger();
+		}
+
+		@Override
+		public boolean hasNext() {
+			while (!stack.isEmpty()) {
+				NestedInteger top = stack.peek();
+				if (top.isInteger()) {
+					return true;
+				} else {
+					stack.pop();
+					for (int i = top.getList().size() - 1; i >= 0; i--) {
+						stack.push(top.getList().get(i));
+					}
+				}
+			}
+			return false;
 		}
 	}
 	

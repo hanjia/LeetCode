@@ -1,4 +1,4 @@
-package org.hanjia.leetcode;
+package org.hanjia.leetcode.bitoperation;
 
 public class Problem191_NumberOf1Bits {
 	public int hammingWeight(int n) {
@@ -14,5 +14,4 @@ public class Problem191_NumberOf1Bits {
 	public boolean getBit(int n, int i) {
 		return (n & (1 << i)) != 0;
 	}
-	// TODO: add tests
 }
